@@ -4,6 +4,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "video_utils.h"
+#include "TerrainMap.h"
 
 const int GAME_SCREEN_HEIGHT = 680;
 const int GAME_SCREEN_WIDTH = 1360;
@@ -11,6 +12,9 @@ const int GAME_SCREEN_WIDTH = 1360;
 SDL_Surface *terrain_0 = NULL;
 SDL_Surface *game_screen = NULL;
 SDL_Surface *terrain_alpha_mask_0 = NULL;
+
+//TerrainMap game_map = TerrainMap();
+//game_map.get_terrain_type(45,67);
 
 int main(int argc, char* args[])
 {
