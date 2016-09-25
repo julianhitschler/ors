@@ -13,6 +13,18 @@ SDL_Surface *terrain_0 = NULL;
 SDL_Surface *game_screen = NULL;
 SDL_Surface *terrain_alpha_mask_0 = NULL;
 
+void render_map(TerrainMap *game_map, SDL_Surface *screen, SDL_Surface *terrain, SDL_Surface *tree, int global_offset_x, int global_offset_y)
+{
+    //render terrain tiles:
+    for (int i = 0; i < MAP_SIZE; i++)
+    {
+        for (int j = 0; j < MAP_SIZE; j++)
+        {
+            blit_surface(terrain, screen, global_offset_x + game_map->coord_to_virtual_bitmap_x(i,j), global_offset_y + game_map->coord_to_virtual_bitmap_y(i,j));
+        }
+    }
+}
+
 int main(int argc, char* args[])
 {
     TerrainMap *game_map = new TerrainMap();
@@ -35,12 +47,9 @@ int main(int argc, char* args[])
 
     SDL_WM_SetCaption("ORS", NULL);
     terrain_0 = load_image("../gfx_ors/01_terrains/000_1_00_00_00_graslight.tga");
-    blit_surface(terrain_0, game_screen, 200, 200);
-    blit_surface(terrain_0, game_screen, 320, 200);
-    blit_surface(terrain_0, game_screen, 440, 200);
 
-    blit_surface(terrain_0, game_screen, 260, 220);
-    blit_surface(terrain_0, game_screen, 260, 180);
+    render_map(game_map, game_screen, terrain_0, terrain_0, 400, 200);
+
 
     if (SDL_Flip(game_screen) == -1)
     {
@@ -48,7 +57,7 @@ int main(int argc, char* args[])
         exit(5);
     }
 
-    SDL_Delay(2000);
+    SDL_Delay(10000);
     SDL_FreeSurface(terrain_0);
     SDL_Quit();
 

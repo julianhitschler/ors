@@ -31,3 +31,13 @@ int TerrainMap::get_tree_type(int x, int y){
 int TerrainMap::get_building_type(int x, int y){
     return building_type[x][y];
 }
+
+int TerrainMap::coord_to_virtual_bitmap_x(int x, int y){
+    // tile_offset = (x-y)
+    // center line = MAP_SIZE/2
+    return ((MAP_SIZE/2)-(x-y))*60;
+}
+
+int TerrainMap::coord_to_virtual_bitmap_y(int x, int y){
+    return x*20 + y*20;
+}
