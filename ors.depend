@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1474745810 source:/home/juli/data/programming/ors/src/ors.cpp
+1474785012 source:/home/juli/data/programming/ors/src/ors.cpp
 	"SDL/SDL.h"
 	"SDL/SDL_image.h"
 	<string>
 	<iostream>
+	<stdlib.h>
 
