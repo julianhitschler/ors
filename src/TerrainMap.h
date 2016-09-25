@@ -18,4 +18,4 @@ class TerrainMap
         unsigned short building_type [MAP_SIZE][MAP_SIZE];
 };
 
-#endif // TERRAIN_MAP_H
+#endif //TERRAIN_MAP_H

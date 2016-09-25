@@ -1,13 +1,14 @@
 #include "TerrainMap.h"
+#include <iostream>
 
 TerrainMap::TerrainMap()
 {
     //ctor
-    for (int i; i < MAP_SIZE; i++)
+    for (int i = 0; i < MAP_SIZE; i++)
     {
-        for (int j; j < MAP_SIZE; j++)
+        for (int j = 0; j < MAP_SIZE; j++)
         {
-            terrain_type[i][j] = 0;
+            terrain_type[i][j] = 67;
         }
     }
 }

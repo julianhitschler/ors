@@ -13,11 +13,12 @@ SDL_Surface *terrain_0 = NULL;
 SDL_Surface *game_screen = NULL;
 SDL_Surface *terrain_alpha_mask_0 = NULL;
 
-//TerrainMap game_map = TerrainMap();
-//game_map.get_terrain_type(45,67);
-
 int main(int argc, char* args[])
 {
+
+    TerrainMap *game_map = new TerrainMap();
+    std::cerr << game_map->get_terrain_type(45,67) << std::endl;
+
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
         std::cerr << "Failed to initialize SDL." << std::endl;
         exit(3);
@@ -46,7 +47,7 @@ int main(int argc, char* args[])
         exit(5);
     }
 
-    SDL_Delay(10000);
+    SDL_Delay(2000);
     SDL_FreeSurface(terrain_0);
     SDL_Quit();
 
