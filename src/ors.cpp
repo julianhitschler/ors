@@ -28,8 +28,12 @@ int main(int argc, char* args[])
     }
 
     SDL_WM_SetCaption("ORS", NULL);
-    terrain_0 = load_image("../gfx_ors/01_terrains/000_0_00_00_00_graslight.tga");
+    terrain_0 = load_image("../gfx_ors/01_terrains/000_1_00_00_00_graslight.tga");
     blit_surface(terrain_0, game_screen, 200, 200);
+    blit_surface(terrain_0, game_screen, 320, 200);
+    blit_surface(terrain_0, game_screen, 440, 200);
+
+    blit_surface(terrain_0, game_screen, 260, 220);
 
     if (SDL_Flip(game_screen) == -1)
     {
