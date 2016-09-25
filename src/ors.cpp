@@ -34,6 +34,7 @@ int main(int argc, char* args[])
     blit_surface(terrain_0, game_screen, 440, 200);
 
     blit_surface(terrain_0, game_screen, 260, 220);
+    blit_surface(terrain_0, game_screen, 260, 180);
 
     if (SDL_Flip(game_screen) == -1)
     {
