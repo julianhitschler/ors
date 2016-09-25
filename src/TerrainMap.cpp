@@ -8,7 +8,9 @@ TerrainMap::TerrainMap()
     {
         for (int j = 0; j < MAP_SIZE; j++)
         {
-            terrain_type[i][j] = 67;
+            terrain_type[i][j] = 0;
+            tree_type[i][j] = 255;
+            building_type[i][j] = 0;
         }
     }
 }

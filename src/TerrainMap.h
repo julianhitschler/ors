@@ -15,7 +15,9 @@ class TerrainMap
     private:
         unsigned short terrain_type [MAP_SIZE][MAP_SIZE];
         unsigned short tree_type [MAP_SIZE][MAP_SIZE];
+        //Semantics: 255 is free, others are free families
         unsigned short building_type [MAP_SIZE][MAP_SIZE];
+        //Semantics: 0: free, 1: user building, 2: destructable building 3: other building
 };
 
 #endif //TERRAIN_MAP_H

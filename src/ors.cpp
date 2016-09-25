@@ -15,9 +15,10 @@ SDL_Surface *terrain_alpha_mask_0 = NULL;
 
 int main(int argc, char* args[])
 {
-
     TerrainMap *game_map = new TerrainMap();
     std::cerr << game_map->get_terrain_type(45,67) << std::endl;
+    std::cerr << game_map->get_tree_type(45,67) << std::endl;
+    std::cerr << game_map->get_building_type(45,67) << std::endl;
 
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
         std::cerr << "Failed to initialize SDL." << std::endl;
