@@ -14,11 +14,14 @@ TerrainMap::TerrainMap()
         }
     }
 
-    tree_type[0][0] = 0;
-    tree_type[4][3] = 0;
-    tree_type[3][0] = 0;
-    tree_type[2][1] = 0;
+    //tree_type[0][0] = 0;
+    //tree_type[MAP_SIZE-1][0] = 0;
+    tree_type[0][MAP_SIZE-1] = 0;
+    tree_type[1][MAP_SIZE-1] = 0;
+    tree_type[2][MAP_SIZE-1] = 0;
+    //tree_type[2][1] = 0;
     tree_type[1][1] = 0;
+
     //tree_type[MAP_SIZE-1][MAP_SIZE-1] = 0;
 }
 

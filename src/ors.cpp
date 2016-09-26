@@ -14,14 +14,30 @@ SDL_Surface *tree_0 = NULL;
 SDL_Surface *game_screen = NULL;
 SDL_Surface *terrain_alpha_mask_0 = NULL;
 
-void render_map(TerrainMap *game_map, SDL_Surface *screen, SDL_Surface *terrain, SDL_Surface *tree, int global_offset_x, int global_offset_y)
+void render_map(
+
+    TerrainMap *game_map,
+    SDL_Surface *screen,
+    SDL_Surface *terrain,
+    SDL_Surface *tree,
+    int global_offset_x,
+    int global_offset_y
+
+    )
 {
     //render terrain tiles:
     for (int i = 0; i < MAP_SIZE; i++)
     {
         for (int j = 0; j < MAP_SIZE; j++)
         {
-            blit_surface(terrain, screen, global_offset_x + game_map->coord_to_virtual_bitmap_x(i,j), global_offset_y + game_map->coord_to_virtual_bitmap_y(i,j));
+            blit_surface(
+
+                terrain,
+                screen,
+                global_offset_x + game_map->coord_to_virtual_bitmap_x(i,j),
+                global_offset_y + game_map->coord_to_virtual_bitmap_y(i,j)
+
+            );
         }
     }
     // render trees:
@@ -31,7 +47,17 @@ void render_map(TerrainMap *game_map, SDL_Surface *screen, SDL_Surface *terrain,
         {
             if (game_map->get_tree_type(i,j) != 255)
             {
-                blit_surface(tree, screen, global_offset_x + game_map->coord_to_virtual_bitmap_x(i,j), global_offset_y + game_map->coord_to_virtual_bitmap_y(i,j));
+                std::cerr << tree->h << std::endl;
+                blit_surface(
+
+                    tree,
+                    screen,
+                    global_offset_x + game_map->coord_to_virtual_bitmap_x(i,j),
+                    global_offset_y - tree->h + 35 + game_map->coord_to_virtual_bitmap_y(i,j)
+                    //global_offset_y + game_map->coord_to_virtual_bitmap_y(i,j)
+                    //0
+
+                    );
             }
         }
     }
@@ -40,9 +66,6 @@ void render_map(TerrainMap *game_map, SDL_Surface *screen, SDL_Surface *terrain,
 int main(int argc, char* args[])
 {
     TerrainMap *game_map = new TerrainMap();
-    std::cerr << game_map->get_terrain_type(45,67) << std::endl;
-    std::cerr << game_map->get_tree_type(45,67) << std::endl;
-    std::cerr << game_map->get_building_type(45,67) << std::endl;
 
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
         std::cerr << "Failed to initialize SDL." << std::endl;
