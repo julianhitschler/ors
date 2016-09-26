@@ -133,6 +133,23 @@ void GameState::handle_events()
 
 void GameState::mainloop()
 {
+    double i = game_map->virtual_bitmap_to_coord_x(180-1, 60-1);
+    double j = game_map->virtual_bitmap_to_coord_y(180-1, 60-1);
+
+    std::cerr << i << "," << j << std::endl;
+
+    i = game_map->virtual_bitmap_to_coord_x(3, 60-1);
+    j = game_map->virtual_bitmap_to_coord_y(3, 60-1);
+
+    std::cerr << i << "," << j << std::endl;
+
+    i = game_map->virtual_bitmap_to_coord_x(180-1, 1);
+    j = game_map->virtual_bitmap_to_coord_y(180-1, 1);
+
+    std::cerr << i << "," << j << std::endl;
+
+    //exit(0);
+
     while(!quit_game)
     {
         render_map();
@@ -159,5 +176,5 @@ void GameState::move_global_offset()
         global_offset_y = MAP_SIZE*40 + 50;
     }
 
-    std::cerr << global_offset_x << "," << global_offset_y << std::endl;
+    //std::cerr << global_offset_x << "," << global_offset_y << std::endl;
 }

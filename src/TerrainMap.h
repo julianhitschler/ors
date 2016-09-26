@@ -1,7 +1,7 @@
 #ifndef TERRAIN_MAP_H
 #define TERRAIN_MAP_H
 
-const int MAP_SIZE = 8;
+const int MAP_SIZE = 3;
 
 class TerrainMap
 {
@@ -14,6 +14,8 @@ class TerrainMap
 
         int coord_to_virtual_bitmap_x(int x, int y);
         int coord_to_virtual_bitmap_y(int x, int y);
+        double virtual_bitmap_to_coord_x(int x, int y);
+        double virtual_bitmap_to_coord_y(int x, int y);
 
     protected:
     private:
