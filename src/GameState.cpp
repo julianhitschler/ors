@@ -30,8 +30,9 @@ GameState::GameState()
 
     global_offset_x = 200;
     global_offset_y = 100;
-
     quit_game = false;
+    screen_velocity_x = 0;
+    screen_velocity_y = 0;
 
 }
 
@@ -53,6 +54,8 @@ void GameState::flip_sceen()
 
 void GameState::render_map()
 {
+    //black out screen:
+    SDL_FillRect( game_screen, &game_screen->clip_rect, SDL_MapRGB( game_screen->format, 0x00, 0x00, 0x00 ) );
     //render terrain tiles:
     for (int i = 0; i < MAP_SIZE; i++)
     {
@@ -91,6 +94,38 @@ void GameState::render_map()
 
 void GameState::handle_events()
 {
+    //handle key states:
+    Uint8 *key_states = SDL_GetKeyState(NULL);
+
+    if( key_states[ SDLK_UP ] )
+    {
+        screen_velocity_y = 10;
+    }
+    else if(key_states[ SDLK_DOWN ])
+    {
+        screen_velocity_y = -10;
+    }
+    else {
+        screen_velocity_y = 0;
+    }
+
+    if(key_states[ SDLK_LEFT ])
+    {
+        screen_velocity_x = 10;
+    }
+    else if (key_states[ SDLK_RIGHT ])
+    {
+        screen_velocity_x = -10;
+    }
+    else {
+        screen_velocity_x = 0;
+    }
+
+    global_offset_x += screen_velocity_x;
+    global_offset_y += screen_velocity_y;
+    //std::cerr << global_offset_x << "," << global_offset_y << std::endl;
+
+    //handle other events:
     while (SDL_PollEvent( &event ))
     {
         if( event.type == SDL_QUIT )

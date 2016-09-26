@@ -26,6 +26,8 @@ class GameState
         int global_offset_y;
         SDL_Event event;
         bool quit_game;
+        int screen_velocity_x;
+        int screen_velocity_y;
 };
 
 #endif // GAMESTATE_H
