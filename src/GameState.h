@@ -13,6 +13,7 @@ class GameState
         void flip_sceen();
         void show();
         void handle_events();
+        void mainloop();
     protected:
     private:
         TerrainMap *game_map;

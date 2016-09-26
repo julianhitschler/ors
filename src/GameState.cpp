@@ -31,6 +31,8 @@ GameState::GameState()
     global_offset_x = 200;
     global_offset_y = 100;
 
+    quit_game = false;
+
 }
 
 GameState::~GameState()
@@ -95,10 +97,22 @@ void GameState::render_map()
 
 void GameState::handle_events()
 {
-    while (SDL_PollEvent( &event )){
+    while (SDL_PollEvent( &event ))
+    {
         if( event.type == SDL_QUIT )
         {
             quit_game = true;
         }
+    }
+}
+
+void GameState::mainloop()
+{
+    while(!quit_game)
+    {
+        render_map();
+        flip_sceen();
+        SDL_Delay(50);
+        handle_events();
     }
 }

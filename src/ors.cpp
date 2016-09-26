@@ -12,9 +12,7 @@ int main(int argc, char* args[])
 
     GameState *game_state = new GameState();
 
-    game_state->render_map();
-    game_state->flip_sceen();
-    game_state->show();
+    game_state->mainloop();
 
     std::cerr << "Success!" << std::endl;
 
