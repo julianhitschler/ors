@@ -12,6 +12,7 @@ class GameState
         void render_map();
         void flip_sceen();
         void show();
+        void handle_events();
     protected:
     private:
         TerrainMap *game_map;
@@ -20,6 +21,8 @@ class GameState
         SDL_Surface *game_screen;
         int global_offset_x;
         int global_offset_y;
+        SDL_Event event;
+        bool quit_game;
 };
 
 #endif // GAMESTATE_H

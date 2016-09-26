@@ -92,3 +92,13 @@ void GameState::render_map()
         }
     }
 }
+
+void GameState::handle_events()
+{
+    while (SDL_PollEvent( &event )){
+        if( event.type == SDL_QUIT )
+        {
+            quit_game = true;
+        }
+    }
+}
