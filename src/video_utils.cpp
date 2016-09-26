@@ -16,15 +16,15 @@ SDL_Surface *load_image(std::string file_name)
         exit(1);
 
     }
-    std::cerr  << "file loaded" << std::endl;
+    std::cerr  << "file " + file_name +" loaded" << std::endl;
     image_display_format = SDL_DisplayFormatAlpha(raw_image);
 
-    if (raw_image == NULL){
+    if (image_display_format == NULL){
         std::cerr << "Error while converting file: " << file_name << std::endl;
         exit(2);
     }
 
-    std::cerr << "file converted" << std::endl;
+    std::cerr << "file  " + file_name +" converted" << std::endl;
     SDL_FreeSurface(raw_image);
     return image_display_format;
 }

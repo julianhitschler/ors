@@ -7,53 +7,14 @@
 #include "TerrainMap.h"
 #include "GameState.h"
 
-const int GAME_SCREEN_HEIGHT = 680;
-const int GAME_SCREEN_WIDTH = 1360;
-
-SDL_Surface *terrain_0 = NULL;
-SDL_Surface *tree_0 = NULL;
-SDL_Surface *game_screen = NULL;
-
 int main(int argc, char* args[])
 {
-    TerrainMap *game_map = new TerrainMap();
+
     GameState *game_state = new GameState();
 
-    if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
-        std::cerr << "Failed to initialize SDL." << std::endl;
-        exit(3);
-    }
-
-    game_screen = SDL_SetVideoMode( GAME_SCREEN_WIDTH, GAME_SCREEN_HEIGHT, 32, SDL_SWSURFACE );
-
-    if (game_screen == NULL)
-    {
-        std::cerr << "Failed to open game screen." << std::endl;
-        exit(4);
-    }
-
-    SDL_WM_SetCaption("ORS", NULL);
-    terrain_0 = load_image("../gfx_ors/01_terrains/000_1_00_00_00_graslight.tga");
-    tree_0 = load_image("../gfx_ors/02_trees/000_beech/000_0_00_00_00_beech01.tga");
-
-    game_state->render_map(game_map, game_screen, terrain_0, tree_0, 400, 200);
-
-
-    if (SDL_Flip(game_screen) == -1)
-    {
-        std::cerr << "Game screen could not be opened." << std::endl;
-        exit(5);
-    }
-
-    SDL_Delay(10000);
-
-    SDL_FreeSurface(terrain_0);
-    SDL_FreeSurface(tree_0);
-
-    //delete &game_state;
-    //delete &game_map;
-
-    SDL_Quit();
+    game_state->render_map();
+    game_state->flip_sceen();
+    game_state->show();
 
     std::cerr << "Success!" << std::endl;
 
