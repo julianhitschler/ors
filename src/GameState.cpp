@@ -81,7 +81,7 @@ void GameState::render_map()
         {
             if (game_map->get_tree_type(i,j) != 255)
             {
-                std::cerr << tree_0->h << std::endl;
+                //std::cerr << "Tree height:"<< tree_0->h << std::endl;
                 blit_surface(
 
                     tree_0,
