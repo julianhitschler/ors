@@ -14,7 +14,6 @@ class GameState
         virtual ~GameState();
         void render_map();
         void flip_sceen();
-        void show();
         void handle_events();
         void mainloop();
     protected:

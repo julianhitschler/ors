@@ -51,12 +51,6 @@ void GameState::flip_sceen()
     }
 }
 
-void GameState::show()
-{
-    SDL_Delay(10000);
-    SDL_Quit();
-}
-
 void GameState::render_map()
 {
     //render terrain tiles:
