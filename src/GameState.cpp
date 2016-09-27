@@ -28,8 +28,8 @@ GameState::GameState()
     terrain_0 = load_image("../gfx_ors/01_terrains/000_1_00_00_00_graslight.tga");
     tree_0 = load_image("../gfx_ors/02_trees/000_beech/000_0_00_00_00_beech01.tga");
 
-    global_offset_x = (120*(-1)*MAP_SIZE)/2;
-    global_offset_y = (40*(-1)*MAP_SIZE)/2;
+    global_offset_x = (60*(-1)*MAP_SIZE)/2;
+    global_offset_y = (20*(-1)*MAP_SIZE)/2;
     quit_game = false;
     screen_velocity_x = 0;
     screen_velocity_y = 0;
@@ -133,6 +133,7 @@ void GameState::handle_events()
 
 void GameState::mainloop()
 {
+    /**
     int i = game_map->virtual_bitmap_to_coord_x(180-1, 60-1);
     int j = game_map->virtual_bitmap_to_coord_y(180-1, 60-1);
 
@@ -149,6 +150,7 @@ void GameState::mainloop()
     std::cerr << i << "," << j << std::endl;
 
     //exit(0);
+    **/
 
     while(!quit_game)
     {
@@ -176,5 +178,5 @@ void GameState::move_global_offset()
         global_offset_y = MAP_SIZE*(-1)*40 - 50;
     }
 
-    std::cerr << global_offset_x << "," << global_offset_y << std::endl;
+    //std::cerr << global_offset_x << "," << global_offset_y << std::endl;
 }
