@@ -1,11 +1,11 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-//const int GAME_SCREEN_HEIGHT = 680;
-//const int GAME_SCREEN_WIDTH = 1360;
+const int GAME_SCREEN_HEIGHT = 680;
+const int GAME_SCREEN_WIDTH = 1360;
 
-const int GAME_SCREEN_HEIGHT = 500;
-const int GAME_SCREEN_WIDTH = 800;
+//const int GAME_SCREEN_HEIGHT = 500;
+//const int GAME_SCREEN_WIDTH = 800;
 
 class GameState
 {
@@ -17,6 +17,9 @@ class GameState
         void handle_events();
         void mainloop();
         void move_global_offset();
+        void toggle_fullscreen();
+        void set_fullscreen();
+        void unset_fullscreen();
     protected:
     private:
         TerrainMap *game_map;

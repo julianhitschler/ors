@@ -129,6 +129,7 @@ void GameState::handle_events()
         {
             quit_game = true;
         }
+
         if( event.type == SDL_VIDEORESIZE )
         {
             game_screen = SDL_SetVideoMode( event.resize.w, event.resize.h, 32, SDL_SWSURFACE | SDL_RESIZABLE );
@@ -137,6 +138,15 @@ void GameState::handle_events()
                std::cerr << "Error while re-sizing window." << std::endl;
                exit(5);
             }
+        }
+
+        if(( event.type == SDL_KEYDOWN ) && ( event.key.keysym.sym == SDLK_F1 ))
+        {
+            set_fullscreen();
+        }
+        if(( event.type == SDL_KEYDOWN ) && ( event.key.keysym.sym == SDLK_ESCAPE ))
+        {
+            unset_fullscreen();
         }
     }
 }
@@ -189,4 +199,39 @@ void GameState::move_global_offset()
     }
 
     //std::cerr << global_offset_x << "," << global_offset_y << std::endl;
+}
+
+void GameState::toggle_fullscreen()
+{
+    if(fullscreen)
+    {
+        unset_fullscreen();
+    } else {
+        set_fullscreen();
+    }
+}
+
+void GameState::set_fullscreen()
+{
+    game_screen = SDL_SetVideoMode(
+
+        GAME_SCREEN_WIDTH,
+        GAME_SCREEN_HEIGHT,
+        32,
+        //SDL_SWSURFACE | SDL_RESIZABLE | SDL_FULLSCREEN
+        SDL_SWSURFACE | SDL_FULLSCREEN
+        );
+
+        if( game_screen == NULL )
+        {
+            std::cerr << "Error while making window fullscreen." << std::endl;
+            exit(6);
+        }
+    fullscreen = true;
+}
+
+void GameState::unset_fullscreen()
+{
+    game_screen = SDL_SetVideoMode( GAME_SCREEN_WIDTH, GAME_SCREEN_HEIGHT, 32, SDL_SWSURFACE | SDL_RESIZABLE );
+    fullscreen = false;
 }
