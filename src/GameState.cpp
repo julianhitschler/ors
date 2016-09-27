@@ -6,6 +6,7 @@
 #include "video_utils.h"
 #include "TerrainMap.h"
 #include "GameState.h"
+#include "GraphicsRecord.h"
 
 GameState::GameState()
 {
@@ -171,6 +172,11 @@ void GameState::mainloop()
     std::cerr << i << "," << j << std::endl;
 
     //exit(0);
+
+
+    GraphicsRecord *gr = new GraphicsRecord();
+    std::cerr <<"a\n";
+    gr->set_graphics_file("gfx.tga", 2);
     **/
 
     while(!quit_game)

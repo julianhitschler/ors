@@ -13,6 +13,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="src/" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -22,6 +23,7 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="src/" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -31,6 +33,22 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/GameState.cpp" />
+		<Unit filename="src/GameState.h" />
+		<Unit filename="src/GraphicsRecord.cpp" />
+		<Unit filename="src/GraphicsRecord.h" />
+		<Unit filename="src/MapObject.cpp" />
+		<Unit filename="src/MapObject.h" />
+		<Unit filename="src/TerrainMap.cpp" />
+		<Unit filename="src/TerrainMap.h" />
+		<Unit filename="src/Tree.cpp" />
+		<Unit filename="src/Tree.h" />
+		<Unit filename="src/TreeTypeRecord.cpp" />
+		<Unit filename="src/TreeTypeRecord.h" />
+		<Unit filename="src/cintersectcircle.cpp" />
+		<Unit filename="src/ors.cpp" />
+		<Unit filename="src/video_utils.cpp" />
+		<Unit filename="src/video_utils.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
