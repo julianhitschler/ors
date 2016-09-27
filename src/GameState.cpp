@@ -133,8 +133,8 @@ void GameState::handle_events()
 
 void GameState::mainloop()
 {
-    double i = game_map->virtual_bitmap_to_coord_x(180-1, 60-1);
-    double j = game_map->virtual_bitmap_to_coord_y(180-1, 60-1);
+    int i = game_map->virtual_bitmap_to_coord_x(180-1, 60-1);
+    int j = game_map->virtual_bitmap_to_coord_y(180-1, 60-1);
 
     std::cerr << i << "," << j << std::endl;
 

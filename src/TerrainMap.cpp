@@ -52,10 +52,10 @@ int TerrainMap::coord_to_virtual_bitmap_y(int x, int y){
     return x*20 + y*20;
 }
 
-double TerrainMap::virtual_bitmap_to_coord_x(int x, int y){
-    return ((x/3.0) - 20*MAP_SIZE + y)/40.0;
+int TerrainMap::virtual_bitmap_to_coord_x(int x, int y){
+    return (int) ((x/3.0) - 20*MAP_SIZE + y)/40.0;
 }
 
-double TerrainMap::virtual_bitmap_to_coord_y(int x, int y){
-    return ((x/3.0) - 20*MAP_SIZE -y)/-40.0;
+int TerrainMap::virtual_bitmap_to_coord_y(int x, int y){
+    return (int) ((x/3.0) - 20*MAP_SIZE -y)/-40.0;
 }
