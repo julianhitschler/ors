@@ -34,6 +34,7 @@ GameState::GameState()
     screen_velocity_x = 0;
     screen_velocity_y = 0;
     fullscreen = false;
+    set_fullscreen();
 
 }
 
@@ -222,11 +223,11 @@ void GameState::set_fullscreen()
         SDL_SWSURFACE | SDL_FULLSCREEN
         );
 
-        if( game_screen == NULL )
-        {
-            std::cerr << "Error while making window fullscreen." << std::endl;
-            exit(6);
-        }
+    if( game_screen == NULL )
+    {
+        std::cerr << "Error while making window fullscreen." << std::endl;
+        exit(6);
+    }
     fullscreen = true;
 }
 
