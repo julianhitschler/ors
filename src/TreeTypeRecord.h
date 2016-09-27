@@ -4,8 +4,9 @@
 #include <string>
 #include <vector>
 #include "SDL/SDL.h"
+#include "GraphicsRecord.h"
 
-class TreeTypeRecord
+class TreeTypeRecord: public GraphicsRecord
 {
     public:
         TreeTypeRecord();
@@ -16,9 +17,7 @@ class TreeTypeRecord
     private:
         int type_index;
         int wood_initial;
-        std::vector<std::string> graphics_files;
         std::vector<int> graphics_start_month;
-        std::vector<SDL_Surface> graphics;
 };
 
 #endif // TREETYPERECORD_H
