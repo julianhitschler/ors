@@ -15,12 +15,12 @@ TerrainMap::TerrainMap()
     }
 
     //tree_type[0][0] = 0;
-    //tree_type[MAP_SIZE-1][0] = 0;
-    tree_type[0][MAP_SIZE-1] = 0;
-    tree_type[1][MAP_SIZE-1] = 0;
-    tree_type[2][MAP_SIZE-1] = 0;
+    tree_type[MAP_SIZE-1][0] = 0;
+    //tree_type[0][MAP_SIZE-1] = 0;
+    //tree_type[1][MAP_SIZE-1] = 0;
+    //tree_type[2][MAP_SIZE-1] = 0;
     //tree_type[2][1] = 0;
-    tree_type[1][1] = 0;
+    //tree_type[1][1] = 0;
 
     //tree_type[MAP_SIZE-1][MAP_SIZE-1] = 0;
 }
@@ -45,7 +45,7 @@ int TerrainMap::get_building_type(int x, int y){
 int TerrainMap::coord_to_virtual_bitmap_x(int x, int y){
     // tile_offset = (x-y)
     // center line = MAP_SIZE/2
-    return ((MAP_SIZE/2)-(x-y))*60;
+    return MAP_SIZE/2*60-(((MAP_SIZE/2)-(x-y))*-60)-60;
 }
 
 int TerrainMap::coord_to_virtual_bitmap_y(int x, int y){
