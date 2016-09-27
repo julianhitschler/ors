@@ -29,6 +29,7 @@ class GameState
         bool quit_game;
         int screen_velocity_x;
         int screen_velocity_y;
+        bool fullscreen;
 };
 
 #endif // GAMESTATE_H

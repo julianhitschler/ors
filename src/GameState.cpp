@@ -15,7 +15,7 @@ GameState::GameState()
         exit(3);
     }
 
-    game_screen = SDL_SetVideoMode( GAME_SCREEN_WIDTH, GAME_SCREEN_HEIGHT, 32, SDL_SWSURFACE );
+    game_screen = SDL_SetVideoMode( GAME_SCREEN_WIDTH, GAME_SCREEN_HEIGHT, 32, SDL_SWSURFACE | SDL_RESIZABLE );
 
     if (game_screen == NULL)
     {
@@ -33,6 +33,7 @@ GameState::GameState()
     quit_game = false;
     screen_velocity_x = 0;
     screen_velocity_y = 0;
+    fullscreen = false;
 
 }
 
@@ -127,6 +128,15 @@ void GameState::handle_events()
         if( event.type == SDL_QUIT )
         {
             quit_game = true;
+        }
+        if( event.type == SDL_VIDEORESIZE )
+        {
+            game_screen = SDL_SetVideoMode( event.resize.w, event.resize.h, 32, SDL_SWSURFACE | SDL_RESIZABLE );
+            if( game_screen == NULL )
+            {
+               std::cerr << "Error while re-sizing window." << std::endl;
+               exit(5);
+            }
         }
     }
 }
