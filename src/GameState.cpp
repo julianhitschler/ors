@@ -150,6 +150,16 @@ void GameState::handle_events()
         {
             unset_fullscreen();
         }
+        if ((event.type == SDL_MOUSEBUTTONUP) && (event.button.button == SDL_BUTTON_LEFT))
+        {
+            int virtual_bitmap_x = event.button.x + global_offset_x;
+            int virtual_bitmap_y = event.button.y + global_offset_y;
+
+            int coord_x = game_map->virtual_bitmap_to_coord_x(virtual_bitmap_x, virtual_bitmap_y);
+            int coord_y = game_map->virtual_bitmap_to_coord_y(virtual_bitmap_x, virtual_bitmap_y);
+
+            game_map->plant_tree(coord_x, coord_y);
+        }
     }
 }
 
