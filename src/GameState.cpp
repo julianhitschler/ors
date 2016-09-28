@@ -29,8 +29,8 @@ GameState::GameState()
     terrain_0 = load_image("../gfx_ors/01_terrains/000_1_00_00_00_graslight.tga");
     tree_0 = load_image("../gfx_ors/02_trees/000_beech/000_0_00_00_00_beech01.tga");
 
-    global_offset_x = (60*(-1)*MAP_SIZE)/2;
-    global_offset_y = (20*(-1)*MAP_SIZE)/2;
+    global_offset_x = (60*MAP_SIZE)/2;
+    global_offset_y = (20*MAP_SIZE)/2;
     quit_game = false;
     screen_velocity_x = 0;
     screen_velocity_y = 0;
@@ -68,8 +68,8 @@ void GameState::render_map()
 
                 terrain_0,
                 game_screen,
-                global_offset_x + game_map->coord_to_virtual_bitmap_x(i,j),
-                global_offset_y + game_map->coord_to_virtual_bitmap_y(i,j)
+                game_map->coord_to_virtual_bitmap_x(i,j) - global_offset_x,
+                game_map->coord_to_virtual_bitmap_y(i,j) - global_offset_y
 
             );
         }
@@ -86,8 +86,8 @@ void GameState::render_map()
 
                     tree_0,
                     game_screen,
-                    global_offset_x + game_map->coord_to_virtual_bitmap_x(i,j),
-                    global_offset_y - tree_0->h + 35 + game_map->coord_to_virtual_bitmap_y(i,j)
+                    game_map->coord_to_virtual_bitmap_x(i,j) - global_offset_x,
+                    game_map->coord_to_virtual_bitmap_y(i,j) - tree_0->h + 35 - global_offset_y
 
                     );
             }
@@ -102,11 +102,11 @@ void GameState::handle_events()
 
     if( key_states[ SDLK_UP ] )
     {
-        screen_velocity_y = 10;
+        screen_velocity_y = -10;
     }
     else if(key_states[ SDLK_DOWN ])
     {
-        screen_velocity_y = -10;
+        screen_velocity_y = 10;
     }
     else {
         screen_velocity_y = 0;
@@ -114,11 +114,11 @@ void GameState::handle_events()
 
     if(key_states[ SDLK_LEFT ])
     {
-        screen_velocity_x = 10;
+        screen_velocity_x = -10;
     }
     else if (key_states[ SDLK_RIGHT ])
     {
-        screen_velocity_x = -10;
+        screen_velocity_x = 10;
     }
     else {
         screen_velocity_x = 0;
@@ -194,18 +194,18 @@ void GameState::move_global_offset()
     global_offset_x += screen_velocity_x;
     global_offset_y += screen_velocity_y;
 
-    if (global_offset_x > 50){
-        global_offset_x = 50;
-    } else if (global_offset_x < MAP_SIZE*(-1)*120 - 50){
-        global_offset_x = MAP_SIZE*(-1)*120 - 50;
+    if (global_offset_x < -50){
+        global_offset_x = -50;
+    } else if (global_offset_x > MAP_SIZE*120 - 50){
+        global_offset_x = MAP_SIZE*120 - 50;
     }
-    if (global_offset_y > 50){
-        global_offset_y = 50;
-    } else if (global_offset_y < MAP_SIZE*(-1)*40 - 50){
-        global_offset_y = MAP_SIZE*(-1)*40 - 50;
+    if (global_offset_y < -50){
+        global_offset_y = -50;
+    } else if (global_offset_y > MAP_SIZE*40 - 50){
+        global_offset_y = MAP_SIZE*40 - 50;
     }
 
-    //std::cerr << global_offset_x << "," << global_offset_y << std::endl;
+    std::cerr << global_offset_x << "," << global_offset_y << std::endl;
 }
 
 void GameState::toggle_fullscreen()
