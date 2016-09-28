@@ -4,18 +4,52 @@
 TerrainMap::TerrainMap()
 {
     //ctor
-    for (int i = 0; i < MAP_SIZE; i++)
+    map_size = 16;
+
+    terrain_type = std::vector<std::vector<unsigned short> >(map_size);
+    tree_type = std::vector<std::vector<unsigned short> >(map_size);
+    building_type = std::vector<std::vector<unsigned short> >(map_size);
+
+    //std::cerr << "CC\n" << std::endl;
+
+    std::vector<unsigned short> tt_tmp;
+    std::vector<unsigned short> trt_tmp ;
+    std::vector<unsigned short> bt_tmp ;
+
+    //std::cerr << "AA\n";
+
+    for (int i = 0; i < map_size; i++)
     {
-        for (int j = 0; j < MAP_SIZE; j++)
+
+        //std::cerr << "BB\n";
+
+        tt_tmp = std::vector<unsigned short>(map_size);
+        trt_tmp = std::vector<unsigned short>(map_size);
+        bt_tmp = std::vector<unsigned short>(map_size);
+
+        //std::cerr << "DD\n";
+
+        terrain_type.at(i) = (tt_tmp);
+        tree_type.at(i) = (trt_tmp);
+        building_type.at(i) = (bt_tmp);
+
+        //std::cerr << "EE\n";
+    }
+
+    for (int i = 0; i < map_size; i++)
+    {
+        std::cerr << "FF\n";
+        for (int j = 0; j < map_size; j++)
         {
-            terrain_type[i][j] = 0;
-            tree_type[i][j] = 255;
-            building_type[i][j] = 0;
+            std::cerr << "GG\n";
+            terrain_type[i].at(j) = 0;
+            tree_type[i].at(j) = 255;
+            building_type[i].at(j) = 0;
         }
     }
 
     //tree_type[0][0] = 0;
-    tree_type[MAP_SIZE-1][0] = 0;
+    tree_type[map_size-1][0] = 0;
     //tree_type[0][MAP_SIZE-1] = 0;
     //tree_type[1][MAP_SIZE-1] = 0;
     //tree_type[2][MAP_SIZE-1] = 0;
@@ -45,7 +79,7 @@ int TerrainMap::get_building_type(int x, int y){
 int TerrainMap::coord_to_virtual_bitmap_x(int x, int y){
     // tile_offset = (x-y)
     // center line = MAP_SIZE/2
-    return MAP_SIZE/2*60-(((MAP_SIZE/2)-(x-y))*-60)-60;
+    return map_size/2*60-(((map_size/2)-(x-y))*-60)-60;
 }
 
 int TerrainMap::coord_to_virtual_bitmap_y(int x, int y){
@@ -53,9 +87,19 @@ int TerrainMap::coord_to_virtual_bitmap_y(int x, int y){
 }
 
 int TerrainMap::virtual_bitmap_to_coord_x(int x, int y){
-    return (int) ((x/3.0) - 20*MAP_SIZE + y)/40.0;
+    return (int) ((x/3.0) - 20*map_size + y)/40.0;
 }
 
 int TerrainMap::virtual_bitmap_to_coord_y(int x, int y){
-    return (int) ((x/3.0) - 20*MAP_SIZE -y)/-40.0;
+    return (int) ((x/3.0) - 20*map_size -y)/-40.0;
+}
+
+int TerrainMap::get_map_size()
+{
+    return map_size;
+}
+
+void TerrainMap::plant_tree(int coord_x, int coord_y)
+{
+
 }
