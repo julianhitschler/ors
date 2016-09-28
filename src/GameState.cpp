@@ -35,7 +35,7 @@ GameState::GameState()
     screen_velocity_x = 0;
     screen_velocity_y = 0;
     fullscreen = false;
-    set_fullscreen();
+    //set_fullscreen();
 
 }
 
@@ -154,6 +154,8 @@ void GameState::handle_events()
         {
             int virtual_bitmap_x = event.button.x + global_offset_x;
             int virtual_bitmap_y = event.button.y + global_offset_y;
+
+            std::cerr << virtual_bitmap_x << ":" << virtual_bitmap_y << std::endl;
 
             int coord_x = game_map->virtual_bitmap_to_coord_x(virtual_bitmap_x, virtual_bitmap_y);
             int coord_y = game_map->virtual_bitmap_to_coord_y(virtual_bitmap_x, virtual_bitmap_y);
