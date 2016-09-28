@@ -101,5 +101,8 @@ int TerrainMap::get_map_size()
 
 void TerrainMap::plant_tree(int coord_x, int coord_y)
 {
-
+    if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size)
+    {
+        tree_type[coord_x][coord_y] = 0;
+    }
 }
