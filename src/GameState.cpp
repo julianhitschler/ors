@@ -298,3 +298,31 @@ bool GameState::tile_visible(int coord_x, int coord_y)
     }
     return true;
 }
+
+int* GameState::get_visible_range()
+{
+    int x_1 = game_map->virtual_bitmap_to_coord_x(global_offset_x, global_offset_y);
+    int x_2 = game_map->virtual_bitmap_to_coord_x(global_offset_x + screen_width, global_offset_y + screen_height);
+    int y_1 = game_map->virtual_bitmap_to_coord_y(global_offset_x, global_offset_y);
+    int y_2 = game_map->virtual_bitmap_to_coord_y(global_offset_x + screen_width, global_offset_y + screen_height);
+
+    int return_values[] = {0,0,0,0};
+
+    if (x_1 < x_2)
+    {
+        return_values[0] = x_1;
+        return_values[1] = x_2;
+    } else {
+        return_values[0] = x_2;
+        return_values[1] = x_1;
+    }
+
+    if (y_1 < y_2)
+    {
+        return_values[2] = y_1;
+        return_values[3] = y_2;
+    } else {
+        return_values[2] = y_2;
+        return_values[3] = y_1;
+    }
+}
