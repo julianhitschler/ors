@@ -38,10 +38,10 @@ TerrainMap::TerrainMap()
 
     for (int i = 0; i < map_size; i++)
     {
-        std::cerr << "FF\n";
+        //std::cerr << "FF\n";
         for (int j = 0; j < map_size; j++)
         {
-            std::cerr << "GG\n";
+            //std::cerr << "GG\n";
             terrain_type[i].at(j) = 0;
             tree_type[i].at(j) = 255;
             building_type[i].at(j) = 0;
@@ -104,5 +104,13 @@ void TerrainMap::plant_tree(int coord_x, int coord_y)
     if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size)
     {
         tree_type[coord_x][coord_y] = 0;
+    }
+}
+
+void TerrainMap::remove_tree(int coord_x, int coord_y)
+{
+    if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size)
+    {
+        tree_type[coord_x][coord_y] = 255;
     }
 }

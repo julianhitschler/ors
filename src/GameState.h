@@ -1,6 +1,8 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include <SDL/SDL.h>
+
 const int GAME_SCREEN_HEIGHT = 750;
 const int GAME_SCREEN_WIDTH = 1350;
 
@@ -20,6 +22,8 @@ class GameState
         void toggle_fullscreen();
         void set_fullscreen();
         void unset_fullscreen();
+        int locate_event_coord_x(SDL_Event *event);
+        int locate_event_coord_y(SDL_Event *event);
     protected:
     private:
         TerrainMap *game_map;

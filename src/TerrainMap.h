@@ -13,6 +13,7 @@ class TerrainMap
         int get_building_type(int x, int y);
         int get_map_size();
         void plant_tree(int coord_x, int coord_y);
+        void remove_tree(int coord_x, int coord_y);
 
         int coord_to_virtual_bitmap_x(int x, int y);
         int coord_to_virtual_bitmap_y(int x, int y);

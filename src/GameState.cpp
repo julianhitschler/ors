@@ -35,7 +35,7 @@ GameState::GameState()
     screen_velocity_x = 0;
     screen_velocity_y = 0;
     fullscreen = false;
-    //set_fullscreen();
+    set_fullscreen();
 
 }
 
@@ -152,17 +152,31 @@ void GameState::handle_events()
         }
         if ((event.type == SDL_MOUSEBUTTONUP) && (event.button.button == SDL_BUTTON_LEFT))
         {
-            int virtual_bitmap_x = event.button.x + global_offset_x;
-            int virtual_bitmap_y = event.button.y + global_offset_y;
+            //int virtual_bitmap_x = event.button.x + global_offset_x;
+            //int virtual_bitmap_y = event.button.y + global_offset_y;
 
-            std::cerr << virtual_bitmap_x << ":" << virtual_bitmap_y << std::endl;
+            //std::cerr << virtual_bitmap_x << ":" << virtual_bitmap_y << std::endl;
 
-            int coord_x = game_map->virtual_bitmap_to_coord_x(virtual_bitmap_x, virtual_bitmap_y);
-            int coord_y = game_map->virtual_bitmap_to_coord_y(virtual_bitmap_x, virtual_bitmap_y);
+            //int coord_x = game_map->virtual_bitmap_to_coord_x(virtual_bitmap_x, virtual_bitmap_y);
+            //int coord_y = game_map->virtual_bitmap_to_coord_y(virtual_bitmap_x, virtual_bitmap_y);
 
-            game_map->plant_tree(coord_x, coord_y);
+            game_map->plant_tree(locate_event_coord_x(&event), locate_event_coord_y(&event));
         }
     }
+}
+
+int GameState::locate_event_coord_x(SDL_Event *event)
+{
+        int virtual_bitmap_x = event->button.x + global_offset_x;
+        int virtual_bitmap_y = event->button.y + global_offset_y;
+        return game_map->virtual_bitmap_to_coord_x(virtual_bitmap_x, virtual_bitmap_y);
+}
+
+int GameState::locate_event_coord_y(SDL_Event *event)
+{
+        int virtual_bitmap_x = event->button.x + global_offset_x;
+        int virtual_bitmap_y = event->button.y + global_offset_y;
+        return game_map->virtual_bitmap_to_coord_y(virtual_bitmap_x, virtual_bitmap_y);
 }
 
 void GameState::mainloop()
