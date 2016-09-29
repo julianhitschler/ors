@@ -64,14 +64,17 @@ void GameState::render_map()
     {
         for (int j = 0; j < game_map->get_map_size(); j++)
         {
-            blit_surface(
+            if (tile_visible(i,j))
+            {
+                blit_surface(
 
-                terrain_0,
-                game_screen,
-                game_map->coord_to_virtual_bitmap_x(i,j) - global_offset_x,
-                game_map->coord_to_virtual_bitmap_y(i,j) - global_offset_y
+                    terrain_0,
+                    game_screen,
+                    game_map->coord_to_virtual_bitmap_x(i,j) - global_offset_x,
+                    game_map->coord_to_virtual_bitmap_y(i,j) - global_offset_y
 
-            );
+                );
+            }
         }
     }
     // render trees:
@@ -79,17 +82,19 @@ void GameState::render_map()
     {
         for (int j = 0; j < game_map->get_map_size(); j++)
         {
-            if (game_map->get_tree_type(i,j) != 255)
+            if (tile_visible(i,j))
             {
-                //std::cerr << "Tree height:"<< tree_0->h << std::endl;
-                blit_surface(
+                if (game_map->get_tree_type(i,j) != 255)
+                {
+                    blit_surface(
 
-                    tree_0,
-                    game_screen,
-                    game_map->coord_to_virtual_bitmap_x(i,j) - global_offset_x,
-                    game_map->coord_to_virtual_bitmap_y(i,j) - tree_0->h + 35 - global_offset_y
+                        tree_0,
+                        game_screen,
+                        game_map->coord_to_virtual_bitmap_x(i,j) - global_offset_x,
+                        game_map->coord_to_virtual_bitmap_y(i,j) - tree_0->h + 35 - global_offset_y
 
                     );
+                }
             }
         }
     }
@@ -152,15 +157,11 @@ void GameState::handle_events()
         }
         if ((event.type == SDL_MOUSEBUTTONUP) && (event.button.button == SDL_BUTTON_LEFT))
         {
-            //int virtual_bitmap_x = event.button.x + global_offset_x;
-            //int virtual_bitmap_y = event.button.y + global_offset_y;
-
-            //std::cerr << virtual_bitmap_x << ":" << virtual_bitmap_y << std::endl;
-
-            //int coord_x = game_map->virtual_bitmap_to_coord_x(virtual_bitmap_x, virtual_bitmap_y);
-            //int coord_y = game_map->virtual_bitmap_to_coord_y(virtual_bitmap_x, virtual_bitmap_y);
-
             game_map->plant_tree(locate_event_coord_x(&event), locate_event_coord_y(&event));
+        }
+        if ((event.type == SDL_MOUSEBUTTONUP) && (event.button.button == SDL_BUTTON_RIGHT))
+        {
+            game_map->remove_tree(locate_event_coord_x(&event), locate_event_coord_y(&event));
         }
     }
 }
@@ -267,4 +268,9 @@ void GameState::unset_fullscreen()
 {
     game_screen = SDL_SetVideoMode( GAME_SCREEN_WIDTH, GAME_SCREEN_HEIGHT, 32, SDL_SWSURFACE | SDL_RESIZABLE );
     fullscreen = false;
+}
+
+bool GameState::tile_visible(int coord_x, int coord_y)
+{
+    return true;
 }
