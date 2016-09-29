@@ -60,15 +60,24 @@ void GameState::flip_sceen()
 
 void GameState::render_map()
 {
+    //Get the visible range:
+    int visible_range[] = {0,0,0,0};
+    get_visible_range(visible_range);
+
+    int x_begin = visible_range[0];
+    int x_end = visible_range[1];
+    int y_begin = visible_range[2];
+    int y_end = visible_range[3];
+
     //black out screen:
     SDL_FillRect( game_screen, &game_screen->clip_rect, SDL_MapRGB( game_screen->format, 0x00, 0x00, 0x00 ) );
     //render terrain tiles:
-    for (int i = 0; i < game_map->get_map_size(); i++)
+    for (int i = x_begin; i <= x_end; i++)
     {
-        for (int j = 0; j < game_map->get_map_size(); j++)
+        for (int j = y_begin; j <= y_end; j++)
         {
-            if (tile_visible(i,j))
-            {
+            //if (tile_visible(i,j))
+            //{
                 blit_surface(
 
                     terrain_0,
@@ -77,16 +86,16 @@ void GameState::render_map()
                     game_map->coord_to_virtual_bitmap_y(i,j) - global_offset_y
 
                 );
-            }
+            //}
         }
     }
     // render trees:
-    for (int i = 0; i < game_map->get_map_size(); i++)
+    for (int i = x_begin; i <= x_end; i++)
     {
-        for (int j = 0; j < game_map->get_map_size(); j++)
+        for (int j = y_begin; j <= y_end; j++)
         {
-            if (tile_visible(i,j))
-            {
+            //if (tile_visible(i,j))
+            //{
                 if (game_map->get_tree_type(i,j) != 255)
                 {
                     blit_surface(
@@ -98,7 +107,7 @@ void GameState::render_map()
 
                     );
                 }
-            }
+            //}
         }
     }
 }
@@ -299,30 +308,28 @@ bool GameState::tile_visible(int coord_x, int coord_y)
     return true;
 }
 
-int* GameState::get_visible_range()
+void GameState::get_visible_range(int values[])
 {
-    int x_1 = game_map->virtual_bitmap_to_coord_x(global_offset_x, global_offset_y);
-    int x_2 = game_map->virtual_bitmap_to_coord_x(global_offset_x + screen_width, global_offset_y + screen_height);
-    int y_1 = game_map->virtual_bitmap_to_coord_y(global_offset_x, global_offset_y);
-    int y_2 = game_map->virtual_bitmap_to_coord_y(global_offset_x + screen_width, global_offset_y + screen_height);
-
-    int return_values[] = {0,0,0,0};
+    int x_1 = game_map->virtual_bitmap_to_coord_x(global_offset_x -1000, global_offset_y -1000);
+    int x_2 = game_map->virtual_bitmap_to_coord_x(global_offset_x + screen_width + 1000, global_offset_y + screen_height + 1000);
+    int y_1 = game_map->virtual_bitmap_to_coord_y(global_offset_x -1000, global_offset_y -1000);
+    int y_2 = game_map->virtual_bitmap_to_coord_y(global_offset_x + screen_width +1000, global_offset_y + screen_height + 1000);
 
     if (x_1 < x_2)
     {
-        return_values[0] = x_1;
-        return_values[1] = x_2;
+        values[0] = x_1;
+        values[1] = x_2;
     } else {
-        return_values[0] = x_2;
-        return_values[1] = x_1;
+        values[0] = x_2;
+        values[1] = x_1;
     }
 
     if (y_1 < y_2)
     {
-        return_values[2] = y_1;
-        return_values[3] = y_2;
+        values[2] = y_1;
+        values[3] = y_2;
     } else {
-        return_values[2] = y_2;
-        return_values[3] = y_1;
+        values[2] = y_2;
+        values[3] = y_1;
     }
 }
