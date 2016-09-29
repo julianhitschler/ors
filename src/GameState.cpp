@@ -11,12 +11,15 @@
 GameState::GameState()
 {
     //ctor
+    screen_width = GAME_SCREEN_WIDTH;
+    screen_height = GAME_SCREEN_HEIGHT;
+
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1){
         std::cerr << "Failed to initialize SDL." << std::endl;
         exit(3);
     }
 
-    game_screen = SDL_SetVideoMode( GAME_SCREEN_WIDTH, GAME_SCREEN_HEIGHT, 32, SDL_SWSURFACE | SDL_RESIZABLE );
+    game_screen = SDL_SetVideoMode( screen_width, screen_height, 32, SDL_SWSURFACE | SDL_RESIZABLE );
 
     if (game_screen == NULL)
     {
@@ -139,7 +142,9 @@ void GameState::handle_events()
 
         if( event.type == SDL_VIDEORESIZE )
         {
-            game_screen = SDL_SetVideoMode( event.resize.w, event.resize.h, 32, SDL_SWSURFACE | SDL_RESIZABLE );
+            screen_width = event.resize.w;
+            screen_height = event.resize.h;
+            game_screen = SDL_SetVideoMode( screen_width, screen_height, 32, SDL_SWSURFACE | SDL_RESIZABLE );
             if( game_screen == NULL )
             {
                std::cerr << "Error while re-sizing window." << std::endl;
@@ -266,11 +271,30 @@ void GameState::set_fullscreen()
 
 void GameState::unset_fullscreen()
 {
-    game_screen = SDL_SetVideoMode( GAME_SCREEN_WIDTH, GAME_SCREEN_HEIGHT, 32, SDL_SWSURFACE | SDL_RESIZABLE );
+    game_screen = SDL_SetVideoMode( screen_width, screen_height, 32, SDL_SWSURFACE | SDL_RESIZABLE );
     fullscreen = false;
 }
 
 bool GameState::tile_visible(int coord_x, int coord_y)
 {
+    int virtual_bitmap_x = game_map->coord_to_virtual_bitmap_x(coord_x, coord_y);
+    int virtual_bitmap_y = game_map->coord_to_virtual_bitmap_y(coord_x, coord_y);
+
+    if (virtual_bitmap_x < global_offset_x -1000)
+    {
+        return false;
+    }
+    if (virtual_bitmap_x > global_offset_x + screen_width+1000)
+    {
+        return false;
+    }
+    if (virtual_bitmap_y < global_offset_y -1000)
+    {
+        return false;
+    }
+    if (virtual_bitmap_y > global_offset_y + screen_height+1000)
+    {
+        return false;
+    }
     return true;
 }

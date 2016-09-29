@@ -38,6 +38,8 @@ class GameState
         int screen_velocity_x;
         int screen_velocity_y;
         bool fullscreen;
+        int screen_width;
+        int screen_height;
 };
 
 #endif // GAMESTATE_H
