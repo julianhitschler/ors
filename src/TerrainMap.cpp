@@ -4,7 +4,7 @@
 TerrainMap::TerrainMap()
 {
     //ctor
-    map_size = 1024;
+    map_size = 32;
 
     terrain_type = std::vector<std::vector<unsigned short> >(map_size);
     tree_type = std::vector<std::vector<unsigned short> >(map_size);
@@ -87,11 +87,25 @@ int TerrainMap::coord_to_virtual_bitmap_y(int x, int y){
 }
 
 int TerrainMap::virtual_bitmap_to_coord_y(int x, int y){
-    return  (int) ((x/3.0) - 20*map_size + y)/40.0;;
+    int r =  (int) ((x/3.0) - 20*map_size + y)/40.0;
+    if (r < 0) {
+        return 0;
+    }
+    if (r >= map_size) {
+        return map_size - 1;
+    }
+    return r;
 }
 
 int TerrainMap::virtual_bitmap_to_coord_x(int x, int y){
-    return (int) ((x/3.0) - 20*map_size -y)/-40.0;
+    int r = (int) ((x/3.0) - 20*map_size -y)/-40.0;
+    if (r < 0) {
+        return 0;
+    }
+    if (r >= map_size) {
+        return map_size - 1;
+    }
+    return r;
 }
 
 int TerrainMap::get_map_size()
