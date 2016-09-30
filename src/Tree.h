@@ -3,6 +3,7 @@
 
 #include "MapObject.h"
 #include "GraphicsRecord.h"
+#include "TreeTypeRecord.h"
 
 class Tree: public MapObject
 {

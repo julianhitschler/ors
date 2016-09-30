@@ -333,3 +333,22 @@ void GameState::get_visible_range(int values[])
         values[3] = y_1;
     }
 }
+
+void GameState::load_graphics()
+{
+    MapObject *mo;
+    GraphicsRecord *gr;
+    for (int i = 0; i < game_map->get_map_size(); i++)
+    {
+        for (int j = 0; j < game_map->get_map_size(); j++)
+        {
+            mo = game_map->get_map_object(i,j);
+            if (mo != NULL){
+                gr = mo->get_graphics_record();
+                if (gr->get_graphics(0) == NULL){
+                    gr->set_graphics(load_image(*gr->get_graphics_file_name(0)),0);
+                }
+            }
+        }
+    }
+}

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "MapObject.h"
+#include "Tree.h"
 
 class TerrainMap
 {

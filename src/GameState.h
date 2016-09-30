@@ -26,6 +26,7 @@ class GameState
         int locate_event_coord_y(SDL_Event *event);
         bool tile_visible(int coord_x, int coord_y);
         void get_visible_range(int *values);
+        void load_graphics();
     protected:
     private:
         TerrainMap *game_map;
