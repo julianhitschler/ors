@@ -6,7 +6,7 @@
 #include "video_utils.h"
 #include "TerrainMap.h"
 #include "GameState.h"
-#include "GraphicsRecord.h"
+#include "MapObject.h"
 
 GameState::GameState()
 {

@@ -2,6 +2,7 @@
 #define TREE_H
 
 #include "MapObject.h"
+#include "GraphicsRecord.h"
 
 class Tree: public MapObject
 {

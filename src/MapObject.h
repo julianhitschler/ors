@@ -1,6 +1,10 @@
 #ifndef MAPOBJECT_H
 #define MAPOBJECT_H
 
+#include "SDL/SDL.h"
+#include <vector>
+#include <string>
+#include "GraphicsRecord.h"
 
 class MapObject
 {
@@ -11,6 +15,7 @@ class MapObject
     private:
         int x_coord;
         int y_coord;
+        GraphicsRecord graphicsRecord;
 };
 
 #endif // MAPOBJECT_H
