@@ -142,11 +142,15 @@ int TerrainMap::get_map_size()
     return map_size;
 }
 
-void TerrainMap::plant_tree(int coord_x, int coord_y)
+void TerrainMap::plant_tree(int coord_x, int coord_y, TreeTypeRecord* tt)
 {
     if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size)
     {
-        tree_type[coord_x][coord_y] = 0;
+        std::cerr << "C\n";
+        Tree *t = new Tree(tt);
+        std::cerr << "D\n";
+        map_objects[coord_x][coord_y] = t;
+        std::cerr << "E\n";
     }
 }
 
@@ -154,6 +158,7 @@ void TerrainMap::remove_tree(int coord_x, int coord_y)
 {
     if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size)
     {
-        tree_type[coord_x][coord_y] = 255;
+        delete map_objects[coord_x][coord_y];
+        map_objects[coord_x][coord_y] = NULL;
     }
 }

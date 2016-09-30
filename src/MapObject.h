@@ -34,6 +34,7 @@ class MapObject
         int size_x;
         int size_y;
         GraphicsRecord *graphics_record;
+
 };
 
 #endif // MAPOBJECT_H

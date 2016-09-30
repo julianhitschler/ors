@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include "SDL/SDL.h"
+#include <iostream>
 
 class GraphicsRecord
 {

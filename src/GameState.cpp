@@ -1,12 +1,4 @@
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include <string>
-#include <iostream>
-#include <stdlib.h>
-#include "video_utils.h"
-#include "TerrainMap.h"
 #include "GameState.h"
-#include "MapObject.h"
 
 GameState::GameState()
 {
@@ -28,9 +20,12 @@ GameState::GameState()
     }
     SDL_WM_SetCaption("ORS", NULL);
 
+    tree_types = new std::vector<TreeTypeRecord*>(256, NULL);
+    graphics = new std::vector<GraphicsRecord*>(10000, NULL);
+
     game_map = new TerrainMap();
     terrain_0 = load_image("../gfx_ors/01_terrains/000_1_00_00_00_graslight.tga");
-    tree_0 = load_image("../gfx_ors/02_trees/000_beech/000_0_00_00_00_beech01.tga");
+    //tree_0 = load_image("../gfx_ors/02_trees/000_beech/000_0_00_00_00_beech01.tga");
 
     global_offset_x = (60*game_map->get_map_size())/2;
     global_offset_y = (20*game_map->get_map_size())/2;
@@ -99,9 +94,13 @@ void GameState::render_map()
             //if (tile_visible(i,j))
             //{
                 mo = game_map->get_map_object(i,j);
-                if (mo != 0)
+                if (mo != NULL)
                 {
+                    std::cerr << "O\n";
                     gr = mo->get_graphics_record();
+                    if(gr->get_graphics(0) == NULL){
+                        std::cerr << "P\n";
+                    }
                     blit_surface(
 
                         gr->get_graphics(0),
@@ -175,7 +174,21 @@ void GameState::handle_events()
         }
         if ((event.type == SDL_MOUSEBUTTONUP) && (event.button.button == SDL_BUTTON_LEFT))
         {
-            game_map->plant_tree(locate_event_coord_x(&event), locate_event_coord_y(&event));
+
+            GraphicsRecord *gr = new GraphicsRecord();
+            gr->set_graphics_file_name("../gfx_ors/02_trees/000_beech/000_0_00_00_00_beech01.tga", 0);
+            TreeTypeRecord *ttr = new TreeTypeRecord();
+            ttr->set_graphics_record(gr);
+            ttr->set_type_index(0);
+            ttr->set_wood_initial(30);
+
+            load_graphics();
+
+
+            std::cerr << "A\n";
+            //game_map->plant_tree(locate_event_coord_x(&event), locate_event_coord_y(&event), tree_types->at(0));
+            game_map->plant_tree(locate_event_coord_x(&event), locate_event_coord_y(&event), ttr);
+            std::cerr << "B\n";
         }
         if ((event.type == SDL_MOUSEBUTTONUP) && (event.button.button == SDL_BUTTON_RIGHT))
         {
@@ -340,10 +353,18 @@ void GameState::get_visible_range(int values[])
 
 void GameState::load_graphics()
 {
-    for (GraphicsRecord* gr : graphics)
+    for (GraphicsRecord* gr : *graphics)
     {
-        if (gr->get_graphics(0) == NULL){
-            gr->set_graphics(load_image(*gr->get_graphics_file_name(0)),0);
+        if (gr != NULL){
+            if (gr->get_graphics(0) == NULL){
+                gr->set_graphics(load_image(*gr->get_graphics_file_name(0)),0);
+            }
         }
     }
+}
+
+void GameState::add_tree_type(TreeTypeRecord *tt)
+{
+    tree_types->push_back(tt);
+    graphics->push_back(tt->get_graphics_record());
 }

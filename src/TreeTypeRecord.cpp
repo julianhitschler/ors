@@ -5,6 +5,7 @@
 TreeTypeRecord::TreeTypeRecord()
 {
     //ctor
+    wood_initial = 40;
 }
 
 TreeTypeRecord::~TreeTypeRecord()
@@ -32,3 +33,7 @@ GraphicsRecord* TreeTypeRecord::get_graphics_record()
     return graphics_record;
 }
 
+int TreeTypeRecord::get_wood_initial()
+{
+    return wood_initial;
+}

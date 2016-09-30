@@ -11,6 +11,7 @@ class TreeTypeRecord
     public:
         TreeTypeRecord();
         virtual ~TreeTypeRecord();
+        int get_wood_initial();
         void set_type_index(int i);
         void set_wood_initial(int i);
         void set_graphics_record(GraphicsRecord *gr);

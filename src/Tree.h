@@ -4,11 +4,12 @@
 #include "MapObject.h"
 #include "GraphicsRecord.h"
 #include "TreeTypeRecord.h"
+#include <iostream>
 
 class Tree: public MapObject
 {
     public:
-        Tree();
+        Tree(TreeTypeRecord* tr);
         virtual ~Tree();
     protected:
     private:

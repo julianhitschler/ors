@@ -1,7 +1,16 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
-#include <SDL/SDL.h>
+#include "SDL/SDL.h"
+#include "SDL/SDL_image.h"
+#include <string>
+#include <iostream>
+#include <stdlib.h>
+#include "video_utils.h"
+#include "TerrainMap.h"
+#include "GameState.h"
+#include "MapObject.h"
+#include "TreeTypeRecord.h"
 
 const int GAME_SCREEN_HEIGHT = 750;
 const int GAME_SCREEN_WIDTH = 1350;
@@ -27,7 +36,7 @@ class GameState
         bool tile_visible(int coord_x, int coord_y);
         void get_visible_range(int *values);
         void load_graphics();
-        void add_tree_type(TreeTypeRecord tt);
+        void add_tree_type(TreeTypeRecord *tt);
     protected:
     private:
         TerrainMap *game_map;

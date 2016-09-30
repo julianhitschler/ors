@@ -3,8 +3,8 @@
 GraphicsRecord::GraphicsRecord()
 {
     //ctor
-    graphics = new std::vector<SDL_Surface*>(10);
-    graphics_files = new std::vector<std::string>(10);
+    graphics = new std::vector<SDL_Surface*>(10, NULL);
+    graphics_files = new std::vector<std::string>(10, "");
 }
 
 GraphicsRecord::~GraphicsRecord()
@@ -41,7 +41,8 @@ void GraphicsRecord::set_graphics(SDL_Surface* surface, int position)
 SDL_Surface* GraphicsRecord::get_graphics( int position )
 {
     if (graphics->size() <= position){
+        std::cerr << "Q\n";
         return NULL;
     }
-    return graphics ->at(position);
+    return graphics->at(position);
 }

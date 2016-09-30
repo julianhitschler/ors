@@ -19,7 +19,7 @@ class TerrainMap
         void set_building_type(int x, int y, int value);
         void set_map_object(int x, int y, MapObject* value);
         int get_map_size();
-        void plant_tree(int coord_x, int coord_y);
+        void plant_tree(int coord_x, int coord_y, TreeTypeRecord* tt);
         void remove_tree(int coord_x, int coord_y);
         int coord_to_virtual_bitmap_x(int x, int y);
         int coord_to_virtual_bitmap_y(int x, int y);
