@@ -4,17 +4,19 @@
 TerrainMap::TerrainMap()
 {
     //ctor
-    map_size = 4096;
+    map_size = 1024;
 
     terrain_type = std::vector<std::vector<unsigned short> >(map_size);
     tree_type = std::vector<std::vector<unsigned short> >(map_size);
     building_type = std::vector<std::vector<unsigned short> >(map_size);
+    map_objects = std::vector<std::vector<MapObject*> >(map_size);
 
     //std::cerr << "CC\n" << std::endl;
 
     std::vector<unsigned short> tt_tmp;
     std::vector<unsigned short> trt_tmp ;
     std::vector<unsigned short> bt_tmp ;
+    std::vector<MapObject*> mo ;
 
     //std::cerr << "AA\n";
 
@@ -26,12 +28,14 @@ TerrainMap::TerrainMap()
         tt_tmp = std::vector<unsigned short>(map_size);
         trt_tmp = std::vector<unsigned short>(map_size);
         bt_tmp = std::vector<unsigned short>(map_size);
+        mo = std::vector<MapObject*>(map_size);
 
         //std::cerr << "DD\n";
 
         terrain_type.at(i) = (tt_tmp);
         tree_type.at(i) = (trt_tmp);
         building_type.at(i) = (bt_tmp);
+        map_objects.at(i) = mo;
 
         //std::cerr << "EE\n";
     }
@@ -45,6 +49,7 @@ TerrainMap::TerrainMap()
             terrain_type[i].at(j) = 0;
             tree_type[i].at(j) = 255;
             building_type[i].at(j) = 0;
+            map_objects[i].at(j) = NULL;
         }
     }
 
@@ -74,6 +79,10 @@ int TerrainMap::get_tree_type(int x, int y){
 
 int TerrainMap::get_building_type(int x, int y){
     return building_type[x][y];
+}
+
+MapObject* TerrainMap::get_map_object(int x, int y){
+    return map_objects[x][y];
 }
 
 int TerrainMap::coord_to_virtual_bitmap_x(int x, int y){

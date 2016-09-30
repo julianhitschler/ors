@@ -2,6 +2,7 @@
 #define TERRAIN_MAP_H
 
 #include <vector>
+#include "MapObject.h"
 
 class TerrainMap
 {
@@ -11,6 +12,7 @@ class TerrainMap
         int get_terrain_type(int x, int y);
         int get_tree_type(int x, int y);
         int get_building_type(int x, int y);
+        MapObject* get_map_object(int x, int y);
         int get_map_size();
         void plant_tree(int coord_x, int coord_y);
         void remove_tree(int coord_x, int coord_y);
@@ -26,8 +28,8 @@ class TerrainMap
         std::vector<std::vector<unsigned short> > tree_type;
         //Semantics: 255 is free, others are free families
         std::vector<std::vector<unsigned short> > building_type;
+        std::vector<std::vector<MapObject*> > map_objects;
         //Semantics: 0: free, 1: user building, 2: destructable building 3: other building
-
 };
 
 #endif //TERRAIN_MAP_H

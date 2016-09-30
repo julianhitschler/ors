@@ -15,7 +15,7 @@ class MapObject
     private:
         int x_coord;
         int y_coord;
-        GraphicsRecord graphicsRecord;
+        GraphicsRecord *graphics_record;
 };
 
 #endif // MAPOBJECT_H

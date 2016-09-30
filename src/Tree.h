@@ -12,7 +12,7 @@ class Tree: public MapObject
     protected:
     private:
         int wood;
-        TreeTypeRecord tree_type;
+        TreeTypeRecord *tree_type;
 };
 
 #endif // TREE_H
