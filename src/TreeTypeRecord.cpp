@@ -21,3 +21,14 @@ void TreeTypeRecord::set_wood_initial(int i)
 {
     wood_initial = i;
 }
+
+void TreeTypeRecord::set_graphics_record(GraphicsRecord *gr)
+{
+    graphics_record = gr;
+}
+
+GraphicsRecord* TreeTypeRecord::get_graphics_record()
+{
+    return graphics_record;
+}
+

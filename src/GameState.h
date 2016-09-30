@@ -27,6 +27,7 @@ class GameState
         bool tile_visible(int coord_x, int coord_y);
         void get_visible_range(int *values);
         void load_graphics();
+        void add_tree_type(TreeTypeRecord tt);
     protected:
     private:
         TerrainMap *game_map;
@@ -42,7 +43,8 @@ class GameState
         bool fullscreen;
         int screen_width;
         int screen_height;
-        std::vector<GraphicsRecord*> graphics;
+        std::vector<GraphicsRecord*> *graphics;
+        std::vector<TreeTypeRecord*> *tree_types;
 };
 
 #endif // GAMESTATE_H
