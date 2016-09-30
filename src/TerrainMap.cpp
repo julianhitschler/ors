@@ -83,17 +83,22 @@ int TerrainMap::get_building_type(int x, int y){
 
 void TerrainMap::set_terrain_type(int x, int y, int value)
 {
-    terrain_type[x][x] = value;
+    terrain_type[x][y] = value;
 }
 
 void TerrainMap::set_tree_type(int x, int y, int value)
 {
-    tree_type[x][x] = value;
+    tree_type[x][y] = value;
 }
 
 void TerrainMap::set_building_type(int x, int y, int value)
 {
-    building_type[x][x] = value;
+    building_type[x][y] = value;
+}
+
+void TerrainMap::set_map_object(int x, int y, MapObject* value)
+{
+    map_objects[x][y] = value;
 }
 
 MapObject* TerrainMap::get_map_object(int x, int y){
