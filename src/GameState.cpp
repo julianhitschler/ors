@@ -89,21 +89,25 @@ void GameState::render_map()
             //}
         }
     }
-    // render trees:
+    // render map objects:
+    MapObject *mo = NULL;
+    GraphicsRecord *gr = NULL;
     for (int i = x_begin; i <= x_end; i++)
     {
         for (int j = y_begin; j <= y_end; j++)
         {
             //if (tile_visible(i,j))
             //{
-                if (game_map->get_tree_type(i,j) != 255)
+                mo = game_map->get_map_object(i,j);
+                if (mo != 0)
                 {
+                    gr = mo->get_graphics_record();
                     blit_surface(
 
-                        tree_0,
+                        gr->get_graphics(0),
                         game_screen,
-                        game_map->coord_to_virtual_bitmap_x(i,j) - global_offset_x,
-                        game_map->coord_to_virtual_bitmap_y(i,j) - tree_0->h + 35 - global_offset_y
+                        game_map->coord_to_virtual_bitmap_x(i,j) + mo->get_offset_x() - global_offset_x,
+                        game_map->coord_to_virtual_bitmap_y(i,j) - mo->get_coord_y() - global_offset_y
 
                     );
                 }
@@ -336,19 +340,10 @@ void GameState::get_visible_range(int values[])
 
 void GameState::load_graphics()
 {
-    MapObject *mo;
-    GraphicsRecord *gr;
-    for (int i = 0; i < game_map->get_map_size(); i++)
+    for (GraphicsRecord* gr : graphics)
     {
-        for (int j = 0; j < game_map->get_map_size(); j++)
-        {
-            mo = game_map->get_map_object(i,j);
-            if (mo != NULL){
-                gr = mo->get_graphics_record();
-                if (gr->get_graphics(0) == NULL){
-                    gr->set_graphics(load_image(*gr->get_graphics_file_name(0)),0);
-                }
-            }
+        if (gr->get_graphics(0) == NULL){
+            gr->set_graphics(load_image(*gr->get_graphics_file_name(0)),0);
         }
     }
 }

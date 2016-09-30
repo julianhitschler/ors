@@ -42,6 +42,7 @@ class GameState
         bool fullscreen;
         int screen_width;
         int screen_height;
+        std::vector<GraphicsRecord*> graphics;
 };
 
 #endif // GAMESTATE_H
