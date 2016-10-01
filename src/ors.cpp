@@ -11,7 +11,7 @@ int main(int argc, char* args[])
     TreeTypeRecord *ttr = new TreeTypeRecord();
     ttr->set_graphics_record(gr);
     ttr->set_offset_x(0);
-    ttr->set_offset_y(55);
+    ttr->set_offset_y(35);
     ttr->set_type_index(0);
     ttr->set_wood_initial(30);
 

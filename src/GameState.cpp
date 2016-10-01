@@ -110,8 +110,8 @@ void GameState::render_map()
 
                         gr->get_graphics(0),
                         game_screen,
-                        game_map->coord_to_virtual_bitmap_x(i,j) - mo->get_offset_x() - global_offset_x,
-                        game_map->coord_to_virtual_bitmap_y(i,j) - mo->get_offset_y() - global_offset_y
+                        game_map->coord_to_virtual_bitmap_x(i,j) + mo->get_offset_x() - global_offset_x,
+                        game_map->coord_to_virtual_bitmap_y(i,j) + mo->get_offset_y() - gr->get_graphics(0)->h - global_offset_y
 
                     );
                 }
