@@ -37,6 +37,7 @@ class GameState
         void get_visible_range(int *values);
         void load_graphics();
         void add_tree_type(TreeTypeRecord *tt);
+        void add_graphics(GraphicsRecord *gr);
     protected:
     private:
         TerrainMap *game_map;

@@ -37,3 +37,23 @@ int TreeTypeRecord::get_wood_initial()
 {
     return wood_initial;
 }
+
+int TreeTypeRecord::get_offset_x()
+{
+    return offset_x;
+}
+
+int TreeTypeRecord::get_offset_y()
+{
+    return offset_y;
+}
+
+void TreeTypeRecord::set_offset_x(int i)
+{
+    offset_x = i;
+}
+
+void TreeTypeRecord::set_offset_y(int i)
+{
+    offset_y = i;
+}
