@@ -1,8 +1,4 @@
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include <string>
-#include <iostream>
-#include <stdlib.h>
+#include "video_utils.h"
 
 SDL_Surface *load_image(std::string file_name)
 {

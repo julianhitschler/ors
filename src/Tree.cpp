@@ -1,4 +1,3 @@
-#include "TreeTypeRecord.h"
 #include "Tree.h"
 
 Tree::Tree(TreeTypeRecord* tr)

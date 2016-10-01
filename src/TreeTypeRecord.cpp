@@ -1,6 +1,4 @@
 #include "TreeTypeRecord.h"
-#include <string>
-#include <vector>
 
 TreeTypeRecord::TreeTypeRecord()
 {

@@ -33,6 +33,8 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="src/ConfigParser.cpp" />
+		<Unit filename="src/ConfigParser.h" />
 		<Unit filename="src/GameState.cpp" />
 		<Unit filename="src/GameState.h" />
 		<Unit filename="src/GraphicsRecord.cpp" />

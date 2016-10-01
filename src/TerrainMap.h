@@ -2,6 +2,7 @@
 #define TERRAIN_MAP_H
 
 #include <vector>
+#include <iostream>
 #include "MapObject.h"
 #include "Tree.h"
 

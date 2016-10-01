@@ -5,6 +5,7 @@
 #include <vector>
 #include "SDL/SDL.h"
 #include "GraphicsRecord.h"
+#include "TreeTypeRecord.h"
 
 class TreeTypeRecord
 {

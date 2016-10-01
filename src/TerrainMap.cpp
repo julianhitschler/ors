@@ -1,5 +1,4 @@
 #include "TerrainMap.h"
-#include <iostream>
 
 TerrainMap::TerrainMap()
 {
