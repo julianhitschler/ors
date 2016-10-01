@@ -103,13 +103,15 @@ void GameState::render_map()
                     }
                     std::cerr << gr << "\n";
                     std::cerr << gr->get_graphics(0) << "\n";
+                    std::cerr << mo->get_offset_x() << "\n";
+                    std::cerr << mo->get_offset_y() << "\n";
 
                     blit_surface(
 
                         gr->get_graphics(0),
                         game_screen,
-                        game_map->coord_to_virtual_bitmap_x(i,j) + mo->get_offset_x() - global_offset_x,
-                        game_map->coord_to_virtual_bitmap_y(i,j) - mo->get_coord_y() - global_offset_y
+                        game_map->coord_to_virtual_bitmap_x(i,j) - mo->get_offset_x() - global_offset_x,
+                        game_map->coord_to_virtual_bitmap_y(i,j) - mo->get_offset_y() - global_offset_y
 
                     );
                 }
