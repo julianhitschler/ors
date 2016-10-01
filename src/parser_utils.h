@@ -1,16 +1,15 @@
-#include "parser_utils.h"
+#ifndef PARSER_UTILS_H
+#define PARSER_UTILS_H
 
-std::map<std::string,std::string>* parseFile(std::string file_name){
+#include <string>
+#include <fstream>
+#include <map>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
 
-    std::map<std::string,std::string>* parse_map = new std::map<std::string,std::string>();
+std::map<std::string,std::string>* parseFile(std::string file_name);
+std::vector<std::string> split(const std::string& s, const std::string& delim, const bool keep_empty);
 
-    std::string line;
-    ifstream file;
-    file.open(file_name);
-    while (getline(file, line))
-    {
-        std::cout << line;
-    }
-    file.close();
-    return parse_map;
-}
+#endif //PARSER_UTILS_H
