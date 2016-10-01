@@ -36,7 +36,7 @@ class GameState
         bool tile_visible(int coord_x, int coord_y);
         void get_visible_range(int *values);
         void load_graphics();
-        void add_tree_type(TreeTypeRecord *tt);
+        void add_tree_type(TreeTypeRecord *tt, int i);
         void add_graphics(GraphicsRecord *gr);
     protected:
     private:

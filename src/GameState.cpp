@@ -375,16 +375,12 @@ void GameState::load_graphics()
     }
 }
 
-void GameState::add_tree_type(TreeTypeRecord *tt)
+void GameState::add_tree_type(TreeTypeRecord *tt, int i)
 {
-    int i = 0;
-    TreeTypeRecord* comp = tree_types->at(0);
-    while (comp != NULL){
-            i++;
-            comp = tree_types->at(1);
+    if (tree_types->size() >= i){
+        std::cerr << "Tree Type buffer size exceeded:" << i << std::endl;
     }
     tree_types->at(i) = tt;
-    //tree_types->push_back(tt);
     add_graphics(tt->get_graphics_record());
 }
 

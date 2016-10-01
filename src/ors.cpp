@@ -15,7 +15,7 @@ int main(int argc, char* args[])
     ttr->set_type_index(0);
     ttr->set_wood_initial(30);
 
-    game_state->add_tree_type(ttr);
+    game_state->add_tree_type(ttr, 0);
     std::cerr << "L\n";
     game_state->load_graphics();
 
