@@ -11,57 +11,35 @@ TerrainMap::TerrainMap()
     building_type = std::vector<std::vector<unsigned short> >(map_size);
     map_objects = std::vector<std::vector<MapObject*> >(map_size);
 
-    //std::cerr << "CC\n" << std::endl;
-
     std::vector<unsigned short> tt_tmp;
     std::vector<unsigned short> trt_tmp ;
     std::vector<unsigned short> bt_tmp ;
     std::vector<MapObject*> mo ;
 
-    //std::cerr << "AA\n";
-
     for (int i = 0; i < map_size; i++)
     {
-
-        //std::cerr << "BB\n";
 
         tt_tmp = std::vector<unsigned short>(map_size);
         trt_tmp = std::vector<unsigned short>(map_size);
         bt_tmp = std::vector<unsigned short>(map_size);
         mo = std::vector<MapObject*>(map_size);
 
-        //std::cerr << "DD\n";
-
         terrain_type.at(i) = (tt_tmp);
         tree_type.at(i) = (trt_tmp);
         building_type.at(i) = (bt_tmp);
         map_objects.at(i) = mo;
-
-        //std::cerr << "EE\n";
     }
 
     for (int i = 0; i < map_size; i++)
     {
-        //std::cerr << "FF\n";
         for (int j = 0; j < map_size; j++)
         {
-            //std::cerr << "GG\n";
             terrain_type[i].at(j) = 0;
             tree_type[i].at(j) = 255;
             building_type[i].at(j) = 0;
             map_objects[i].at(j) = NULL;
         }
     }
-
-    //tree_type[0][0] = 0;
-    tree_type[map_size-1][0] = 0;
-    //tree_type[0][MAP_SIZE-1] = 0;
-    //tree_type[1][MAP_SIZE-1] = 0;
-    //tree_type[2][MAP_SIZE-1] = 0;
-    //tree_type[2][1] = 0;
-    //tree_type[1][1] = 0;
-
-    //tree_type[MAP_SIZE-1][MAP_SIZE-1] = 0;
 }
 
 TerrainMap::~TerrainMap()
@@ -146,11 +124,8 @@ void TerrainMap::plant_tree(int coord_x, int coord_y, TreeTypeRecord* tt)
 {
     if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size)
     {
-        std::cerr << "C\n";
         Tree *t = new Tree(tt);
-        std::cerr << "D\n";
         map_objects[coord_x][coord_y] = t;
-        std::cerr << "E\n";
     }
 }
 
@@ -158,7 +133,9 @@ void TerrainMap::remove_tree(int coord_x, int coord_y)
 {
     if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size)
     {
-        delete map_objects[coord_x][coord_y];
+        //if (map_objects[coord_x][coord_y] != NULL){
+        //    delete map_objects[coord_x][coord_y];
+        //}
         map_objects[coord_x][coord_y] = NULL;
     }
 }

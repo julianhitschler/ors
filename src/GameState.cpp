@@ -25,7 +25,6 @@ GameState::GameState()
 
     game_map = new TerrainMap();
     terrain_0 = load_image("../gfx_ors/01_terrains/000_1_00_00_00_graslight.tga");
-    //tree_0 = load_image("../gfx_ors/02_trees/000_beech/000_0_00_00_00_beech01.tga");
 
     global_offset_x = (60*game_map->get_map_size())/2;
     global_offset_y = (20*game_map->get_map_size())/2;
@@ -71,8 +70,6 @@ void GameState::render_map()
     {
         for (int j = y_begin; j <= y_end; j++)
         {
-            //if (tile_visible(i,j))
-            //{
                 blit_surface(
 
                     terrain_0,
@@ -81,7 +78,6 @@ void GameState::render_map()
                     game_map->coord_to_virtual_bitmap_y(i,j) - global_offset_y
 
                 );
-            //}
         }
     }
     // render map objects:
@@ -91,20 +87,12 @@ void GameState::render_map()
     {
         for (int j = y_begin; j <= y_end; j++)
         {
-            //if (tile_visible(i,j))
-            //{
                 mo = game_map->get_map_object(i,j);
                 if (mo != NULL)
                 {
-                    //std::cerr << "O\n";
                     gr = mo->get_graphics_record();
                     if(gr->get_graphics(0) == NULL){
-                        //std::cerr << "P\n";
                     }
-                    std::cerr << gr << "\n";
-                    std::cerr << gr->get_graphics(0) << "\n";
-                    std::cerr << mo->get_offset_x() << "\n";
-                    std::cerr << mo->get_offset_y() << "\n";
 
                     blit_surface(
 
@@ -115,7 +103,6 @@ void GameState::render_map()
 
                     );
                 }
-            //}
         }
     }
 }
@@ -179,25 +166,8 @@ void GameState::handle_events()
         }
         if ((event.type == SDL_MOUSEBUTTONUP) && (event.button.button == SDL_BUTTON_LEFT))
         {
-            /**
-            GraphicsRecord *gr = new GraphicsRecord();
-            std::cerr << "GraphicsRecord(A):" << gr << "\n";
-            gr->set_graphics_file_name("../gfx_ors/02_trees/000_beech/000_0_00_00_00_beech01.tga", 0);
-            TreeTypeRecord *ttr = new TreeTypeRecord();
-            ttr->set_graphics_record(gr);
-            ttr->set_type_index(0);
-            ttr->set_wood_initial(30);
-
-            load_graphics();
-            std::cerr << "Image(A):" << gr->get_graphics(0) << "\n";
-            **/
-            std::cerr << "A\n";
             TreeTypeRecord *tt = tree_types->at(0);
-            std::cerr << "Tree Type:" << tt<< "\n";
-            std::cerr << "C\n";
-            //game_map->plant_tree(locate_event_coord_x(&event), locate_event_coord_y(&event), tree_types->at(0));
             game_map->plant_tree(locate_event_coord_x(&event), locate_event_coord_y(&event), tree_types->at(0));
-            std::cerr << "B\n";
         }
         if ((event.type == SDL_MOUSEBUTTONUP) && (event.button.button == SDL_BUTTON_RIGHT))
         {
@@ -222,30 +192,6 @@ int GameState::locate_event_coord_y(SDL_Event *event)
 
 void GameState::mainloop()
 {
-    /**
-    int i = game_map->virtual_bitmap_to_coord_x(180-1, 60-1);
-    int j = game_map->virtual_bitmap_to_coord_y(180-1, 60-1);
-
-    std::cerr << i << "," << j << std::endl;
-
-    i = game_map->virtual_bitmap_to_coord_x(3, 60-1);
-    j = game_map->virtual_bitmap_to_coord_y(3, 60-1);
-
-    std::cerr << i << "," << j << std::endl;
-
-    i = game_map->virtual_bitmap_to_coord_x(180-1, 1);
-    j = game_map->virtual_bitmap_to_coord_y(180-1, 1);
-
-    std::cerr << i << "," << j << std::endl;
-
-    //exit(0);
-
-
-    GraphicsRecord *gr = new GraphicsRecord();
-    std::cerr <<"a\n";
-    gr->set_graphics_file("gfx.tga", 2);
-    **/
-
     while(!quit_game)
     {
         render_map();
@@ -367,8 +313,6 @@ void GameState::load_graphics()
         if (gr != NULL){
             if (gr->get_graphics(0) == NULL){
                 SDL_Surface* image = load_image(*gr->get_graphics_file_name(0));
-                std::cerr << "Image:" << image << "\n";
-                std::cerr << "Graphics Record:" << gr <<"\n";
                 gr->set_graphics(image,0);
             }
         }
@@ -377,11 +321,12 @@ void GameState::load_graphics()
 
 void GameState::add_tree_type(TreeTypeRecord *tt, int i)
 {
-    if (tree_types->size() >= i){
+    if (tree_types->size() <= i){
         std::cerr << "Tree Type buffer size exceeded:" << i << std::endl;
+    } else {
+        tree_types->at(i) = tt;
+        add_graphics(tt->get_graphics_record());
     }
-    tree_types->at(i) = tt;
-    add_graphics(tt->get_graphics_record());
 }
 
 void GameState::add_graphics(GraphicsRecord *gr)
