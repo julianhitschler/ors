@@ -1,14 +1,16 @@
 #include "parser_utils.h"
 
-std::map<std::string,std::string>* parseFile(std::string file_name){
+std::vector<std::map<std::string,std::string>* > parseFile(std::string file_name)
+{
 
-    std::map<std::string,std::string>* parse_map = new std::map<std::string,std::string>();
+    std::vector<std::map<std::string,std::string>* > parse_map_vector;
+    std::map<std::string,std::string>* parse_map;
 
     std::string line;
     std::ifstream file;
     std::vector<std::string> elements;
     std::vector<std::string> inner_elements;
-    file.open(file_name);
+    file.open(file_name.c_str());
     int n = 0;
     while (getline(file, line))
     {
@@ -16,6 +18,7 @@ std::map<std::string,std::string>* parseFile(std::string file_name){
         {
             continue;
         }
+        parse_map = new std::map<std::string,std::string>();
         elements = split(line, ":", false);
         if (elements.size() < 2)
         {
@@ -42,10 +45,12 @@ std::map<std::string,std::string>* parseFile(std::string file_name){
                 }
 
             }
+            parse_map_vector.push_back(parse_map);
+            n++;
         }
     }
     file.close();
-    return parse_map;
+    return parse_map_vector;
 }
 
 //Standard string splitting function copied from here: http://stackoverflow.com/questions/236129/split-a-string-in-c
