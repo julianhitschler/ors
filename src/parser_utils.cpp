@@ -6,10 +6,43 @@ std::map<std::string,std::string>* parseFile(std::string file_name){
 
     std::string line;
     std::ifstream file;
+    std::vector<std::string> elements;
+    std::vector<std::string> inner_elements;
     file.open(file_name);
+    int n = 0;
     while (getline(file, line))
     {
-        std::cout << line;
+        if (line[0] == '#')
+        {
+            continue;
+        }
+        elements = split(line, ":", false);
+        if (elements.size() < 2)
+        {
+            std::cerr << "Formatting error in line "<<n<<":" << line;
+            exit(10);
+        } else {
+            parse_map->insert(std::pair<std::string,std::string>("ID",elements[0]));
+            elements = split(elements[1], ";", false);
+            for(std::string s: elements)
+            {
+                std::cout << s << ",";
+                inner_elements = split(s, "=", false);
+                if (s[s.length()-1] == '\n')
+                {
+                    s = s.erase(s.length()-2, s.length()-1);
+                }
+                if (inner_elements.size() != 2)
+                {
+                    std::cerr << "Formatting error in line "<<n<<":" << line;
+                    std::cerr << "Offending element:" << s << std::endl;
+                    exit(11);
+                } else {
+                    parse_map->insert(std::pair<std::string,std::string>(inner_elements[0],inner_elements[1]));
+                }
+
+            }
+        }
     }
     file.close();
     return parse_map;
