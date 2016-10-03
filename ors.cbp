@@ -49,6 +49,8 @@
 		<Unit filename="src/TreeTypeRecord.h" />
 		<Unit filename="src/cintersectcircle.cpp" />
 		<Unit filename="src/ors.cpp" />
+		<Unit filename="src/parser_utils.cpp" />
+		<Unit filename="src/parser_utils.h" />
 		<Unit filename="src/video_utils.cpp" />
 		<Unit filename="src/video_utils.h" />
 		<Extensions>
