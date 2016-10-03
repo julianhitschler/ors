@@ -1,11 +1,13 @@
 #include "GameState.h"
 #include <iostream>
+#include "parser_utils.h"
 
 int main(int argc, char* args[])
 {
 
     GameState *game_state = new GameState();
 
+    parseFile("../config/ors.config");
     GraphicsRecord *gr = new GraphicsRecord();
     gr->set_graphics_file_name("../gfx_ors/02_trees/000_beech/000_0_00_00_00_beech01.tga", 0);
     TreeTypeRecord *ttr = new TreeTypeRecord();

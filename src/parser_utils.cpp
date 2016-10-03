@@ -3,18 +3,25 @@
 std::vector<std::map<std::string,std::string>* > parseFile(std::string file_name)
 {
 
+    std::cout << "Parsing file:" << file_name << std::endl;
+
     std::vector<std::map<std::string,std::string>* > parse_map_vector;
     std::map<std::string,std::string>* parse_map;
 
     std::string line;
     std::ifstream file;
     std::vector<std::string> elements;
+    std::vector<std::string> middle_elements;
     std::vector<std::string> inner_elements;
     file.open(file_name.c_str());
     int n = 0;
     while (getline(file, line))
     {
         if (line[0] == '#')
+        {
+            continue;
+        }
+        if (line[0] == '\n')
         {
             continue;
         }
@@ -25,11 +32,11 @@ std::vector<std::map<std::string,std::string>* > parseFile(std::string file_name
             std::cerr << "Formatting error in line "<<n<<":" << line;
             exit(10);
         } else {
-            parse_map->insert(std::pair<std::string,std::string>("ID",elements[0]));
-            elements = split(elements[1], ";", false);
-            for(std::string s: elements)
+            parse_map->insert(std::pair<std::string,std::string>("ELEMENT_NAME",elements[0]));
+            middle_elements = split(elements[1], ",", false);
+            for(std::string s: middle_elements)
             {
-                std::cout << s << ",";
+                //std::cout << s << ",";
                 inner_elements = split(s, "=", false);
                 if (s[s.length()-1] == '\n')
                 {
@@ -37,7 +44,7 @@ std::vector<std::map<std::string,std::string>* > parseFile(std::string file_name
                 }
                 if (inner_elements.size() != 2)
                 {
-                    std::cerr << "Formatting error in line "<<n<<":" << line;
+                    std::cerr << "Formatting error in line "<<n<<":" << line << std::endl;
                     std::cerr << "Offending element:" << s << std::endl;
                     exit(11);
                 } else {
