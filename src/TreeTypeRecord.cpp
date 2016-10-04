@@ -55,3 +55,14 @@ void TreeTypeRecord::set_offset_y(int i)
 {
     offset_y = i;
 }
+
+int TreeTypeRecord::get_id()
+{
+    return id;
+}
+
+void TreeTypeRecord::set_id(int i)
+{
+    id = i;
+}
+

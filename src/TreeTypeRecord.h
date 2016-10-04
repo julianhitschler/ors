@@ -12,6 +12,7 @@ class TreeTypeRecord
     public:
         TreeTypeRecord();
         virtual ~TreeTypeRecord();
+        int get_id();
         int get_wood_initial();
         int get_offset_x();
         int get_offset_y();
@@ -21,8 +22,10 @@ class TreeTypeRecord
         void set_offset_y(int i);
         void set_graphics_record(GraphicsRecord *gr);
         GraphicsRecord* get_graphics_record();
+        void set_id(int i);
     protected:
     private:
+        int id;
         int offset_x;
         int offset_y;
         int type_index;

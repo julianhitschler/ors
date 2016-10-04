@@ -13,6 +13,7 @@ ConfigParser::~ConfigParser()
 
 void ConfigParser::parseConfig(std::string file_name, GameState* gs)
 {
+    std::cout << "Parsing file:" << file_name << std::endl;
     game_state = gs;
     std::string s;
     std::vector<std::map<std::string,std::string>* > parseMaps = parseFile(file_name);
@@ -24,11 +25,13 @@ void ConfigParser::parseConfig(std::string file_name, GameState* gs)
             parseTreeType(parseMap);
         }
     }
+    std::cout << "Done Parsing!" << std::endl;
 }
 
 void ConfigParser::parseTreeType(std::map<std::string,std::string>* parseMap)
 {
     TreeTypeRecord *tt = new TreeTypeRecord();
+    tt->set_id(std::stoi(parseMap->at("id")));
     tt->set_graphics_record(parseGraphics(parseMap));
     tt->set_offset_x(std::stoi(parseMap->at("offset_x")));
     tt->set_offset_y(std::stoi(parseMap->at("offset_y")));
@@ -40,6 +43,6 @@ GraphicsRecord* ConfigParser::parseGraphics(std::map<std::string,std::string>* p
 {
     GraphicsRecord *graphics_record = new GraphicsRecord();
     graphics_record->set_graphics_file_name(parseMap->at("gfx_0"), 0);
-    std::cout << parseMap->at("gfx_0");
+    //std::cout << parseMap->at("gfx_0");
     return graphics_record;
 }

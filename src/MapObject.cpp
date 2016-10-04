@@ -86,3 +86,8 @@ void MapObject::set_graphics_record(GraphicsRecord* gr)
 {
     graphics_record = gr;
 }
+
+int MapObject::get_id()
+{
+    return id;
+}

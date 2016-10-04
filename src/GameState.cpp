@@ -328,7 +328,10 @@ void GameState::add_tree_type(TreeTypeRecord *tt, int i)
     } else {
         tree_types->at(i) = tt;
         add_graphics(tt->get_graphics_record());
-        tree_type_counter++;
+        if (tree_type_counter < tt->get_id())
+        {
+            tree_type_counter = tt->get_id();
+        }
     }
 }
 
@@ -343,12 +346,12 @@ void GameState::add_graphics(GraphicsRecord *gr)
     graphics->at(i) = gr;
 }
 
-void GameState::random_trees()
+void GameState::random_trees(int percent)
 {
     std::random_device rd;
     std::mt19937 eng(rd()); //seed random generator
-    std::uniform_int_distribution<> distr_decision(0, 10);
-    std::uniform_int_distribution<> distr_type(0, tree_type_counter-1);
+    std::uniform_int_distribution<> distr_decision(0, 100);
+    std::uniform_int_distribution<> distr_type(0, tree_type_counter);
     int k;
     int t;
     for (int i = 0; i < game_map->get_map_size(); i++)
@@ -356,9 +359,10 @@ void GameState::random_trees()
         for (int j = 0; j < game_map->get_map_size(); j++)
         {
             k = distr_decision(eng);
-            if (k == 0)
+            if (k <= percent)
             {
                 t = distr_type(eng);
+                //std::cerr << t << std::endl;
                 game_map->plant_tree(i, j, tree_types->at(t));
             }
         }

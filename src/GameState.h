@@ -38,7 +38,7 @@ class GameState
         void load_graphics();
         void add_tree_type(TreeTypeRecord *tt, int i);
         void add_graphics(GraphicsRecord *gr);
-        void random_trees();
+        void random_trees(int percent);
     protected:
     private:
         TerrainMap *game_map;

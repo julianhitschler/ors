@@ -3,7 +3,7 @@
 std::vector<std::map<std::string,std::string>* > parseFile(std::string file_name)
 {
 
-    std::cout << "Parsing file:" << file_name << std::endl;
+
 
     std::vector<std::map<std::string,std::string>* > parse_map_vector;
     std::map<std::string,std::string>* parse_map;

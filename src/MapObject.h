@@ -25,8 +25,10 @@ class MapObject
         void set_size_y(int y);
         GraphicsRecord* get_graphics_record();
         void set_graphics_record(GraphicsRecord *gr);
+        int get_id();
     protected:
     private:
+        int id;
         int x_coord;
         int y_coord;
         int offset_x;
