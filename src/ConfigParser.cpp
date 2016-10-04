@@ -29,6 +29,7 @@ void ConfigParser::parseConfig(std::string file_name, GameState* gs)
 void ConfigParser::parseTreeType(std::map<std::string,std::string>* parseMap)
 {
     TreeTypeRecord *tt = new TreeTypeRecord();
+
     game_state->add_tree_type(tt, 0);
 }
 
