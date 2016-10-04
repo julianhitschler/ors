@@ -56,6 +56,7 @@ class GameState
         int screen_height;
         std::vector<GraphicsRecord*> *graphics;
         std::vector<TreeTypeRecord*> *tree_types;
+        int tree_type_counter;
 };
 
 #endif // GAMESTATE_H

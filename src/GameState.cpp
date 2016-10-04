@@ -21,6 +21,7 @@ GameState::GameState()
     SDL_WM_SetCaption("ORS", NULL);
 
     tree_types = new std::vector<TreeTypeRecord*>(256, NULL);
+    tree_type_counter = 0;
     graphics = new std::vector<GraphicsRecord*>(10000, NULL);
 
     game_map = new TerrainMap();
@@ -327,6 +328,7 @@ void GameState::add_tree_type(TreeTypeRecord *tt, int i)
     } else {
         tree_types->at(i) = tt;
         add_graphics(tt->get_graphics_record());
+        tree_type_counter++;
     }
 }
 
@@ -346,14 +348,19 @@ void GameState::random_trees()
     std::random_device rd;
     std::mt19937 eng(rd()); //seed random generator
     std::uniform_int_distribution<> distr_decision(0, 10);
+    std::uniform_int_distribution<> distr_type(0, tree_type_counter-1);
     int k;
+    int t;
     for (int i = 0; i < game_map->get_map_size(); i++)
     {
         for (int j = 0; j < game_map->get_map_size(); j++)
         {
             k = distr_decision(eng);
             if (k == 0)
-            game_map->plant_tree(i, j, tree_types->at(0));
+            {
+                t = distr_type(eng);
+                game_map->plant_tree(i, j, tree_types->at(t));
+            }
         }
     }
 }
