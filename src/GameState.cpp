@@ -308,22 +308,14 @@ void GameState::get_visible_range(int values[])
 
 void GameState::load_graphics()
 {
-    //std::cerr << "A\n";
     for (GraphicsRecord* gr : *graphics)
     {
-        //std::cerr << "B\n";
         if (gr != NULL)
         {
-            //std::cerr << "C\n";
             if (gr->get_graphics(0) == NULL)
             {
-                //std::cerr << "D\n";
                 SDL_Surface* image = load_image(*gr->get_graphics_file_name(0));
-                //std::cerr << "E\n";
                 gr->set_graphics(image,0);
-                //std::cerr << "F\n";
-            } else {
-                //std::cerr << "G\n";
             }
         }
     }

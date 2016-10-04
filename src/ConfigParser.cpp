@@ -40,10 +40,6 @@ GraphicsRecord* ConfigParser::parseGraphics(std::map<std::string,std::string>* p
 {
     GraphicsRecord *graphics_record = new GraphicsRecord();
     graphics_record->set_graphics_file_name(parseMap->at("gfx_0"), 0);
-    std::cout << parseMap->at("gfx_0") ;
-    //if (graphics_record->get_graphics(0) == NULL)
-    //{
-    //    std::cout << "." << std::endl;
-    //}
+    std::cout << parseMap->at("gfx_0");
     return graphics_record;
 }
