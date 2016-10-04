@@ -38,6 +38,7 @@ class GameState
         void load_graphics();
         void add_tree_type(TreeTypeRecord *tt, int i);
         void add_graphics(GraphicsRecord *gr);
+        void random_trees();
     protected:
     private:
         TerrainMap *game_map;

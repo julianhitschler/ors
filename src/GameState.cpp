@@ -166,7 +166,6 @@ void GameState::handle_events()
         }
         if ((event.type == SDL_MOUSEBUTTONUP) && (event.button.button == SDL_BUTTON_LEFT))
         {
-            TreeTypeRecord *tt = tree_types->at(0);
             game_map->plant_tree(locate_event_coord_x(&event), locate_event_coord_y(&event), tree_types->at(0));
         }
         if ((event.type == SDL_MOUSEBUTTONUP) && (event.button.button == SDL_BUTTON_RIGHT))
@@ -340,4 +339,21 @@ void GameState::add_graphics(GraphicsRecord *gr)
             comp = graphics->at(i);
     }
     graphics->at(i) = gr;
+}
+
+void GameState::random_trees()
+{
+    std::random_device rd;
+    std::mt19937 eng(rd()); //seed random generator
+    std::uniform_int_distribution<> distr_decision(0, 10);
+    int k;
+    for (int i = 0; i < game_map->get_map_size(); i++)
+    {
+        for (int j = 0; j < game_map->get_map_size(); j++)
+        {
+            k = distr_decision(eng);
+            if (k == 0)
+            game_map->plant_tree(i, j, tree_types->at(0));
+        }
+    }
 }

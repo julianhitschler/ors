@@ -5,6 +5,7 @@
 #include <iostream>
 #include "MapObject.h"
 #include "Tree.h"
+#include <random>
 
 class TerrainMap
 {
@@ -26,7 +27,6 @@ class TerrainMap
         int coord_to_virtual_bitmap_y(int x, int y);
         int virtual_bitmap_to_coord_x(int x, int y);
         int virtual_bitmap_to_coord_y(int x, int y);
-
     protected:
     private:
         int map_size;
