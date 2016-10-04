@@ -9,6 +9,7 @@ std::vector<std::map<std::string,std::string>* > parseFile(std::string file_name
     std::map<std::string,std::string>* parse_map;
 
     std::string line;
+    std::string value;
     std::ifstream file;
     std::vector<std::string> elements;
     std::vector<std::string> middle_elements;
@@ -48,7 +49,12 @@ std::vector<std::map<std::string,std::string>* > parseFile(std::string file_name
                     std::cerr << "Offending element:" << s << std::endl;
                     exit(11);
                 } else {
-                    parse_map->insert(std::pair<std::string,std::string>(inner_elements[0],inner_elements[1]));
+                    value = inner_elements[1];
+                    if (value[0] == '"')
+                    {
+                        value = value.substr(1,value.length()-2);
+                    }
+                    parse_map->insert(std::pair<std::string,std::string>(inner_elements[0],value));
                 }
 
             }

@@ -10,6 +10,7 @@ int main(int argc, char* args[])
     ConfigParser config_parser;
     config_parser.parseConfig("../config/ors.config", game_state);
     //parseFile("../config/ors.config");
+    /**
     GraphicsRecord *gr = new GraphicsRecord();
     gr->set_graphics_file_name("../gfx_ors/02_trees/000_beech/000_0_00_00_00_beech01.tga", 0);
     TreeTypeRecord *ttr = new TreeTypeRecord();
@@ -21,7 +22,8 @@ int main(int argc, char* args[])
 
     game_state->add_tree_type(ttr, 0);
     game_state->load_graphics();
-
+    **/
+    game_state->load_graphics();
     game_state->mainloop();
 
     std::cerr << "Success!" << std::endl;

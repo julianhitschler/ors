@@ -29,8 +29,17 @@ void ConfigParser::parseConfig(std::string file_name, GameState* gs)
 void ConfigParser::parseTreeType(std::map<std::string,std::string>* parseMap)
 {
     TreeTypeRecord *tt = new TreeTypeRecord();
+    tt->set_graphics_record(parseGraphics(parseMap));
+    tt->set_offset_x(std::stoi(parseMap->at("offset_x")));
+    tt->set_offset_y(std::stoi(parseMap->at("offset_y")));
+    tt->set_wood_initial(std::stoi(parseMap->at("wood")));
+    game_state->add_tree_type(tt, std::stoi(parseMap->at("id")));
+}
 
-    game_state->add_tree_type(tt, 0);
+GraphicsRecord* ConfigParser::parseGraphics(std::map<std::string,std::string>* parseMap)
+{
+    GraphicsRecord *graphics_record = new GraphicsRecord();
+    graphics_record->set_graphics_file_name(parseMap->at("gfx_0"), 0);
 }
 
 
