@@ -7,7 +7,7 @@ TerrainMap::TerrainMap()
 
     terrain_type = std::vector<std::vector<unsigned short> >(map_size);
     tree_type = std::vector<std::vector<unsigned short> >(map_size);
-    building_type = std::vector<std::vector<unsigned short> >(map_size);
+    display_object = std::vector<std::vector<unsigned short> >(map_size);
     map_objects = std::vector<std::vector<MapObject*> >(map_size);
 
     std::vector<unsigned short> tt_tmp;
@@ -25,7 +25,7 @@ TerrainMap::TerrainMap()
 
         terrain_type.at(i) = (tt_tmp);
         tree_type.at(i) = (trt_tmp);
-        building_type.at(i) = (bt_tmp);
+        display_object.at(i) = (bt_tmp);
         map_objects.at(i) = mo;
     }
 
@@ -35,7 +35,7 @@ TerrainMap::TerrainMap()
         {
             terrain_type[i].at(j) = 0;
             tree_type[i].at(j) = 255;
-            building_type[i].at(j) = 0;
+            display_object[i].at(j) = 0;
             map_objects[i].at(j) = NULL;
         }
     }
@@ -54,8 +54,8 @@ int TerrainMap::get_tree_type(int x, int y){
     return tree_type[x][y];
 }
 
-int TerrainMap::get_building_type(int x, int y){
-    return building_type[x][y];
+int TerrainMap::get_display_object(int x, int y){
+    return display_object[x][y];
 }
 
 void TerrainMap::set_terrain_type(int x, int y, int value)
@@ -68,9 +68,9 @@ void TerrainMap::set_tree_type(int x, int y, int value)
     tree_type[x][y] = value;
 }
 
-void TerrainMap::set_building_type(int x, int y, int value)
+void TerrainMap::set_display_object(int x, int y, int value)
 {
-    building_type[x][y] = value;
+    display_object[x][y] = value;
 }
 
 void TerrainMap::set_map_object(int x, int y, MapObject* value)
@@ -125,6 +125,7 @@ void TerrainMap::plant_tree(int coord_x, int coord_y, TreeTypeRecord* tt)
     {
         Tree *t = new Tree(tt);
         map_objects[coord_x][coord_y] = t;
+        display_object[coord_x][coord_y] = 1;
     }
 }
 
@@ -133,5 +134,6 @@ void TerrainMap::remove_tree(int coord_x, int coord_y)
     if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size)
     {
         map_objects[coord_x][coord_y] = NULL;
+        display_object[coord_x][coord_y] = 0;
     }
 }

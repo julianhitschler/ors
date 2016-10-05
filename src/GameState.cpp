@@ -82,6 +82,7 @@ void GameState::render_map()
         }
     }
     // render map objects:
+    unsigned short display_object_status;
     MapObject *mo = NULL;
     GraphicsRecord *gr = NULL;
     for (int i = x_begin; i <= x_end; i++)
@@ -89,7 +90,8 @@ void GameState::render_map()
         for (int j = y_begin; j <= y_end; j++)
         {
                 mo = game_map->get_map_object(i,j);
-                if (mo != NULL)
+                display_object_status = game_map->get_display_object(i,j);
+                if (mo != NULL && display_object_status == 1)
                 {
                     gr = mo->get_graphics_record();
                     if(gr->get_graphics(0) == NULL){
