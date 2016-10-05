@@ -196,7 +196,7 @@ void GameState::mainloop()
     {
         render_map();
         flip_sceen();
-        SDL_Delay(50);
+        SDL_Delay(40);
         handle_events();
         move_global_offset();
     }

@@ -3,7 +3,7 @@
 TerrainMap::TerrainMap()
 {
     //ctor
-    map_size = 256;
+    map_size = 2048;
 
     terrain_type = std::vector<std::vector<unsigned short> >(map_size);
     tree_type = std::vector<std::vector<unsigned short> >(map_size);
