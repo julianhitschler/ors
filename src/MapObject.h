@@ -18,13 +18,10 @@ class MapObject
         void set_coord_y(int y);
         MapObjectTypeRecord* get_type_record();
         void set_type_record(MapObjectTypeRecord *motr);
-        GraphicsRecord* get_graphics_record();
-        void set_graphics_record(GraphicsRecord *gr);
     protected:
     private:
         int x_coord;
         int y_coord;
-        GraphicsRecord *graphics_record;
         MapObjectTypeRecord *map_object_type_record;
 
 };
