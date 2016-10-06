@@ -42,6 +42,8 @@ void ConfigParser::parseMapObject(std::map<std::string, std::string>* parseMap, 
     motr->set_graphics_record(parseGraphics(parseMap));
     motr->set_offset_x(std::stoi(parseMap->at("offset_x")));
     motr->set_offset_y(std::stoi(parseMap->at("offset_y")));
+    motr->set_extent_x(std::stoi(parseMap->at("size_x")));
+    motr->set_extent_y(std::stoi(parseMap->at("size_y")));
 }
 
 GraphicsRecord* ConfigParser::parseGraphics(std::map<std::string,std::string>* parseMap)
