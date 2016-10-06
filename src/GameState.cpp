@@ -100,8 +100,6 @@ void GameState::render_map()
                     //std::cout << "A\n";
                     motr = mo->get_type_record();
                     gr = motr->get_graphics_record();
-                    if(gr->get_graphics(0) == NULL){
-                    }
 
                     blit_surface(
 
