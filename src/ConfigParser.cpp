@@ -31,12 +31,17 @@ void ConfigParser::parseConfig(std::string file_name, GameState* gs)
 void ConfigParser::parseTreeType(std::map<std::string,std::string>* parseMap)
 {
     TreeTypeRecord *tt = new TreeTypeRecord();
-    tt->set_id(std::stoi(parseMap->at("id")));
-    tt->set_graphics_record(parseGraphics(parseMap));
-    tt->set_offset_x(std::stoi(parseMap->at("offset_x")));
-    tt->set_offset_y(std::stoi(parseMap->at("offset_y")));
+    parseMapObject(parseMap, tt);
     tt->set_wood_initial(std::stoi(parseMap->at("wood")));
     game_state->add_tree_type(tt, std::stoi(parseMap->at("id")));
+}
+
+void ConfigParser::parseMapObject(std::map<std::string, std::string>* parseMap, MapObjectTypeRecord *motr)
+{
+    motr->set_id(std::stoi(parseMap->at("id")));
+    motr->set_graphics_record(parseGraphics(parseMap));
+    motr->set_offset_x(std::stoi(parseMap->at("offset_x")));
+    motr->set_offset_y(std::stoi(parseMap->at("offset_y")));
 }
 
 GraphicsRecord* ConfigParser::parseGraphics(std::map<std::string,std::string>* parseMap)
