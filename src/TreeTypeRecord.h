@@ -7,7 +7,7 @@
 #include "GraphicsRecord.h"
 #include "MapObjectTypeRecord.h"
 
-class TreeTypeRecord: public  MapObjectTypeRecord
+class TreeTypeRecord: public MapObjectTypeRecord
 {
     public:
         TreeTypeRecord();

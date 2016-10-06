@@ -82,17 +82,23 @@ void GameState::render_map()
         }
     }
     // render map objects:
+    //std::cout << "D\n";
     unsigned short display_object_status;
     MapObject *mo = NULL;
+    MapObjectTypeRecord * motr = NULL;
     GraphicsRecord *gr = NULL;
+    //std::cout << "C\n";
     for (int i = x_begin; i <= x_end; i++)
     {
         for (int j = y_begin; j <= y_end; j++)
         {
                 mo = game_map->get_map_object(i,j);
+                //std::cout << "E\n";
                 display_object_status = game_map->get_display_object(i,j);
                 if (mo != NULL && display_object_status == 1)
                 {
+                    //std::cout << "A\n";
+                    motr = mo->get_type_record();
                     gr = mo->get_graphics_record();
                     if(gr->get_graphics(0) == NULL){
                     }
@@ -101,8 +107,8 @@ void GameState::render_map()
 
                         gr->get_graphics(0),
                         game_screen,
-                        game_map->coord_to_virtual_bitmap_x(i,j) + mo->get_offset_x() - global_offset_x,
-                        game_map->coord_to_virtual_bitmap_y(i,j) + mo->get_offset_y() - gr->get_graphics(0)->h - global_offset_y
+                        game_map->coord_to_virtual_bitmap_x(i,j) + motr->get_offset_x() - global_offset_x,
+                        game_map->coord_to_virtual_bitmap_y(i,j) + motr->get_offset_y() - gr->get_graphics(0)->h - global_offset_y
 
                     );
                 }

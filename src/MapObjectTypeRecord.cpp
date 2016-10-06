@@ -3,6 +3,8 @@
 MapObjectTypeRecord::MapObjectTypeRecord()
 {
     //ctor
+    extent_x = 1;
+    extent_y = 1;
 }
 
 MapObjectTypeRecord::~MapObjectTypeRecord()
@@ -53,4 +55,24 @@ int MapObjectTypeRecord::get_id()
 void MapObjectTypeRecord::set_id(int i)
 {
     id = i;
+}
+
+int MapObjectTypeRecord::get_extent_x()
+{
+    return extent_x;
+}
+
+int MapObjectTypeRecord::get_extent_y()
+{
+    return extent_y;
+}
+
+void MapObjectTypeRecord::set_extent_x(int i)
+{
+    extent_x = i;
+}
+
+void MapObjectTypeRecord::set_extent_y(int i)
+{
+    extent_y = i;
 }

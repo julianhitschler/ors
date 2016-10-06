@@ -23,6 +23,7 @@ class TerrainMap
         void set_map_object(int x, int y, MapObject* value);
         int get_map_size();
         void place_object(int coord_x, int coord_y, MapObjectTypeRecord* motr, MapObject *mo);
+        void remove_object(int coord_x, int coord_y);
         void plant_tree(int coord_x, int coord_y, TreeTypeRecord* tt);
         void remove_tree(int coord_x, int coord_y);
         int coord_to_virtual_bitmap_x(int x, int y);

@@ -121,16 +121,28 @@ int TerrainMap::get_map_size()
 
 void TerrainMap::place_object(int coord_x, int coord_y, MapObjectTypeRecord* motr, MapObject *mo)
 {
-    if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size )
+    if ( coord_x >= motr->get_extent_x() -1 && coord_y >= motr->get_extent_y() -1 && coord_x < map_size && coord_y < map_size )
     {
-        map_objects[coord_x][coord_y] = mo;
+        mo->set_coord_x(coord_x);
+        mo->set_coord_y(coord_y);
+        for ( int i = coord_x - (motr->get_extent_x() -1); i <= coord_x; i++){
+            for ( int j = coord_y - (motr->get_extent_y() -1); j <= coord_y; j++){
+                map_objects[i][j] = mo;
+            }
+        }
         display_object[coord_x][coord_y] = 1;
     }
 }
 
+void TerrainMap::remove_object(int coord_x, int coord_y)
+{
+    MapObject *mo = map_objects[coord_x][coord_y];
+
+}
+
 void TerrainMap::plant_tree(int coord_x, int coord_y, TreeTypeRecord* tt)
 {
-    if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size && tt != NULL)
+    if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size &&  coord_y < map_size && tt != NULL)
     {
         Tree *t = new Tree(tt);
         place_object(coord_x, coord_y, tt, t);
