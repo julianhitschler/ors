@@ -138,6 +138,10 @@ void GameState::handle_events()
     else {
         screen_velocity_x = 0;
     }
+    if (key_states[ SDLK_q])
+    {
+        quit_game = true;
+    }
 
     //handle other events:
     while (SDL_PollEvent( &event ))
