@@ -119,13 +119,21 @@ int TerrainMap::get_map_size()
     return map_size;
 }
 
+void TerrainMap::place_object(int coord_x, int coord_y, MapObjectTypeRecord* motr, MapObject *mo)
+{
+    if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size )
+    {
+        map_objects[coord_x][coord_y] = mo;
+        display_object[coord_x][coord_y] = 1;
+    }
+}
+
 void TerrainMap::plant_tree(int coord_x, int coord_y, TreeTypeRecord* tt)
 {
     if ( coord_x >= 0 && coord_y >= 0 && coord_x < map_size && coord_y < map_size && tt != NULL)
     {
         Tree *t = new Tree(tt);
-        map_objects[coord_x][coord_y] = t;
-        display_object[coord_x][coord_y] = 1;
+        place_object(coord_x, coord_y, tt, t);
     }
 }
 
